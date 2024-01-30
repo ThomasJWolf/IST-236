@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,7 +8,7 @@ import {
   Button,
   Modal,
   TextInput,
-  Images,
+  Image,
   Pressable,
 } from "react-native";
 
@@ -15,8 +16,9 @@ export default function App() {
   // Create state management variables
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [shoppingItems, setShoppingItems] = useState("");
-  const [enteredItemsText, setEnteredItemsText] = useState(0);
+  const [enteredItemText, setEnteredItemText] = useState("");
 
+  // Create Modal Screen Handler Functions
   function startAddItemHandler() {
     setModalIsVisible(true);
   }
@@ -25,23 +27,28 @@ export default function App() {
     setModalIsVisible(false);
   }
 
+  function itemInputHandler(enteredText) {
+    setEnteredItemText(enteredText);
+  }
+
   function addItemHandler() {
-    console.log(enteredItemsText);
+    console.log(enteredItemText);
     if (shoppingItems === "") {
-      setShoppingItems(enteredItemsText);
+      setShoppingItems(enteredItemText);
     } else {
-      setShoppingItems(shoppingItems + "\n" + enteredItemsText);
+      setShoppingItems(shoppingItems + "\n" + enteredItemText);
     }
-    setEnteredItemsText("");
+    setEnteredItemText("");
     endAddItemHandler();
   }
 
   return (
-    <View style={styles.container}>
+    <>
       {/* Set status bar styling */}
       <StatusBar style="light" />
+
       {/* Set SafeAreaView Screen Container */}
-      <SafeAreaView>
+      <SafeAreaView style={styles.appContainer}>
         {/* Set Title Container */}
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Shopping List</Text>
@@ -49,17 +56,28 @@ export default function App() {
 
         {/* Sets Add Item Button Container */}
         <View style={styles.buttonContainer}>
-          <Text style={styles.text}></Text>
+          <Pressable
+            // Add the android ripple
+            android_ripple={{ color: "#b189f0" }}
+            // Style the button when pressed
+            style={({ pressed }) => pressed && styles.pressedButton}
+            // When pressed, open modal screen
+            onPress={startAddItemHandler}
+          >
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>Add New Item</Text>
+            </View>
+          </Pressable>
         </View>
 
         {/* Set Items to Get Title Container */}
         <View style={styles.subititleContainer}>
-          <Text style={styles.subititle}></Text>
+          <Text style={styles.subititle}>Items To Get:</Text>
         </View>
 
         {/* Set List of Items Container */}
         <View style={styles.listContainer}>
-          <Text style={styles.text}>List of Items Goes Here</Text>
+          <Text style={styles.listText}>{shoppingItems}</Text>
         </View>
         <Modal visible={modalIsVisible} animationType="slide">
           <SafeAreaView style={styles.appContainer}>
@@ -70,26 +88,25 @@ export default function App() {
               />
 
               <TextInput
-              style={styles.textInput}
-              placeholder="Enter Item Here"
-              onChangeText={itemInputHandler}
-              value={enteredItemsText}
-
+                style={styles.textInput}
+                placeholder="Enter Item Here"
+                onChangeText={itemInputHandler}
+                value={enteredItemText}
               />
 
-              <View style={styles.buttonContainer}>
-              <View style={styles.button}>
+              <View style={styles.modalButtonContainer}>
+                <View style={styles.modalButton}>
                   <Button
-                  title="Add Item"
-                  color= ""
-                  onPress={addItemHandler}
+                    title="Add Item"
+                    color="#b180f0"
+                    onPress={addItemHandler}
                   />
                 </View>
-                <View style={styles.button}>
-                <Button
-                  title="Cancle"
-                  color= ""
-                  onPress={endAddItemHandler}
+                <View style={styles.modalButton}>
+                  <Button
+                    title="Cancle"
+                    color="#f1449b"
+                    onPress={endAddItemHandler}
                   />
                 </View>
               </View>
@@ -97,12 +114,12 @@ export default function App() {
           </SafeAreaView>
         </Modal>
       </SafeAreaView>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
     backgroundColor: "#1e085a",
     alignItems: "center",
@@ -111,11 +128,11 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    marginTop: 40,
-    paddingHorizontal: 10,
+    margin: 10,
+    paddingHorizontal: 30,
     justifyContent: "center",
     backgroundColor: "white",
-    borderBottonRightRadius: 20,
+    borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,
   },
   title: {
@@ -127,6 +144,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  addButton: {
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+  },
+
+  addButtonText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#5e08cc",
+  },
+
+  pressedButton: {
+    opacity: 0.8,
+  },
 
   subititleContainer: {
     flex: 1,
@@ -134,20 +167,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     justifyContent: "center",
     backgroundColor: "white",
-    borderBottonRightRadius: 20,
+    borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,
   },
+
   subititle: {
     fontSize: 30,
-    color: ""
+    color: "#5e08cc",
   },
 
   listContainer: {
     flex: 7,
     width: "90%",
-    justifyContent: "center",
     backgroundColor: "white",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 10
+  },
+  listText: {
+    fontSize: 20,
+    color: "black",
   },
   inputContainer: {
     flex: 1,
@@ -155,20 +193,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     width: "90%",
-    backgroundColor: "#d4e0ff"
+    backgroundColor: "#311b6b",
   },
   image: {
     width: 100,
     height: 100,
-    margin: 20
+    margin: 20,
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "",
-    backgroundColor: "",
-    color: "",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
     borderRadius: 6,
     width: "100%",
+    padding: 12,
   },
-
+  modalButtonContainer: {
+    flexDirection: "row",
+    marginTop: 16,
+  },
+  modalButton: {
+    width: "30%",
+    marginHorizontal: 8,
+  },
 });
