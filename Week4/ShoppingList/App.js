@@ -11,9 +11,10 @@ import {
   Image,
   Pressable,
   FlatList,
+  Alert,
 } from "react-native";
 import Item from "./components/Item";
-import Modal from "./modals/ItemInputModal"
+import ItemInputModal from "./modals/ItemInputModal";
 
 export default function App() {
   // Create state management variables
@@ -33,7 +34,7 @@ export default function App() {
   function addItemHandler(enteredText) {
     setShoppingItems((currentShoppingItems) => [
       ...currentShoppingItems,
-      { text: enteredItemText, id: currentID },
+      { text: enteredText, id: currentID },
     ]);
     setCurrentID(currentID + 1);
     endAddItemHandler();
@@ -52,8 +53,8 @@ export default function App() {
           setShoppingItems((currentShoppingItems) => {
             return currentShoppingItems.filter((item) => item.id !== id);
           });
-        }
-      }
+        },
+      },
     ]);
   }
 
@@ -94,12 +95,14 @@ export default function App() {
         <View style={styles.listContainer}>
           <FlatList
             data={shoppingItems}
-            keyExtractor={(item, index) => {
-              return item.id;
-            }}
-            renderItem={(itemData) => {
-              return <Item text={itemData.item.text} id={itemData.item.id} />; // TODO Add onDeleteItem prop
-            }}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={(itemData) => (
+              <Item
+                text={itemData.item.text}
+                id={itemData.item.id}
+                onDeleteItem={deleteItemHandler}
+              />
+            )}
           />
         </View>
 

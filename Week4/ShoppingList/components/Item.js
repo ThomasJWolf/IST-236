@@ -1,19 +1,17 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
 function Item(props) {
-  function deleteItemHandler() {
-    props.onDeleateItem;
-  }
+
   return (
-    <View>
+    <View style={styles.item}>
       <Pressable
         // Adds the android ripple
         android_ripple={{ color: "#210644" }}
         // Style the button when pressed
         style={({ pressed }) => pressed && styles.pressedButton}
-        onPress={props.onDeleateItem.bind(this, props.id)}
+        onPress={props.onDeleteItem.bind(this, props.id)}
       >
-        <Text>{props.text}</Text>
+        <Text style={styles.itemText}>{props.text}</Text>
       </Pressable>
     </View>
   );
@@ -26,6 +24,7 @@ const styles = StyleSheet.create({
     margin: 8,
     borderRadius: 6,
     backgroundColor: "#5e08cc",
+    width: 300
   },
   pressedItem: {
     opacity: 0.5,
