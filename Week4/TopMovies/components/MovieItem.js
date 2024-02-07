@@ -11,7 +11,7 @@ function MovieItem(props) {
         <Image style={styles.itemImage} source={props.image} />
       </View>
       <View style={styles.rankingContainer}>
-        <Text style={styles.itemranking}>{props.ranking}</Text>
+        <Text style={styles.itemranking}>{props.ranking} / 10</Text>
       </View>
     </View>
   );

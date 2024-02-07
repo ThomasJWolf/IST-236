@@ -11,52 +11,52 @@ export default function App() {
     {
       name: "Finding Nemo",
       image: require("./assets/images/findingnemo.jpg"),
-      ranking: "10",
+      ranking: "9.1",
     },
     {
       name: "Up",
       image: require("./assets/images/up.jpg"),
-      ranking: "9",
+      ranking: "9.2",
     },
     {
       name: "How to Train Your Dragon",
       image: require("./assets/images/howtotrainyourdragon.jpg"),
-      ranking: "8",
+      ranking: "9.3",
     },
     {
       name: "Jurassic Park",
       image: require("./assets/images/jurassicpark.jpg"),
-      ranking: "7",
+      ranking: "9.4",
     },
     {
       name: "Avengers: Infinity War",
       image: require("./assets/images/avengersinfinitywar.jpg"),
-      ranking: "6",
+      ranking: "9.5",
     },
     {
       name: "WALL·E",
       image: require("./assets/images/walle.jpg"),
-      ranking: "5",
+      ranking: "9.6",
     },
     {
       name: "Forrest Gump",
       image: require("./assets/images/forrestgump.jpg"),
-      ranking: "4",
+      ranking: "9.7",
     },
     {
       name: "Avengers: Endgame",
       image: require("./assets/images/avengersendgame.jpg"),
-      ranking: "3",
+      ranking: "9.8",
     },
     {
       name: "Back to the Future",
       image: require("./assets/images/backtothefuture.jpg"),
-      ranking: "2",
+      ranking: "9.9",
     },
     {
       name: "Spider-Man:\nAcross the Spider-Verse",
       image: require("./assets/images/spidermanacrossthespiderverse.jpg"),
-      ranking: "1",
+      ranking: "10",
     },
   ]);
 
