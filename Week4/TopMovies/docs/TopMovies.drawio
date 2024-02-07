@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" modified="2024-02-07T03:18:19.428Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="HLbNISg3Kdj15v9T4tc6" version="23.1.1" type="device">
+  <diagram name="Page-1" id="My04iPDE87iwI_xUb_gP">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rnctsSZvIO_tBq5Yz8C5-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="rnctsSZvIO_tBq5Yz8C5-5" value="Movie Image" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="122.5" y="150" width="204.5" height="273" as="geometry" />
+        </mxCell>
+        <mxCell id="jhtOF-ou6-nYdhYKJSAq-2" value="Main Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="165" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="q7HWFvWDvoC3C6vNhjZC-3" value="Movie Title" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="122.5" y="120" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Mr1p6mTjICjQ97jBo12Y-1" value="Movie Raiting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="122.5" y="423" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Mr1p6mTjICjQ97jBo12Y-2" value="Movie Image" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="122.5" y="520" width="204.5" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Mr1p6mTjICjQ97jBo12Y-3" value="Movie Title" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="122.5" y="490" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Mr1p6mTjICjQ97jBo12Y-5" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Top Movie Title&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="122.5" y="60" width="205" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
