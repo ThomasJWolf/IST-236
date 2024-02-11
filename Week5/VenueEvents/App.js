@@ -3,20 +3,22 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import HomeScreen from "./screens/HomeScreen";
+import EventScreen from "./screens/EventScreen";
 import { useFonts } from "expo-font";
+import Colors from "./constants/colors.js";
 
 export default function App() {
   //Set up our custom fonts
   const [fontsLoaded] = useFonts({
-    "squeaker": require("./assets/fonts/Squealer.otf"),
-    "squeaker-embossed": require("./assets/fonts/SquealerEmbossed.otf")
-  })
+    "squealer": require("./assets/fonts/Squealer.otf"),
+    "squealer-embossed": require("./assets/fonts/SquealerEmbossed.otf"),
+  });
 
   // Set state variable for the current screen
   const [currentScreen, setCurrentScreen] = useState("home");
 
-  function eventsScreenHandler() {
-    setCurrentScreen("events");
+  function EventScreenHandler() {
+    setCurrentScreen("event");
   }
 
   function HomeScreenHandler() {
@@ -24,9 +26,9 @@ export default function App() {
   }
 
   // Determine which screen to be on
-  let screen = <HomeScreen onNext={eventsScreenHandler} />;
+  let screen = <HomeScreen onNext={EventScreenHandler} />;
 
-  if (currentScreen === "events") {
+  if (currentScreen === "event") {
     screen = <EventScreen onNext={HomeScreenHandler} />;
   }
 
@@ -41,8 +43,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.accent500,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "squeaker"
   },
 });

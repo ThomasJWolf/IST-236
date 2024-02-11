@@ -1,7 +1,9 @@
-import { View, StyleSheet, Text, NavButton, FlatList } from "react-native";
+import { View, StyleSheet, Text, FlatList, Image } from "react-native";
 import { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import EventItem from "../components/EventItems";
+import NavButton from "../components/NavButton";
+import Title from "../components/Title";
 
 function EventScreen(props) {
   // Set Safe Area Screen Bounderies
@@ -9,33 +11,33 @@ function EventScreen(props) {
 
   const [eventItems, setEventItems] = useState([
     {
-      name: "Temp 1",
+      name: "American Floyd - The Ultimate Pink Floyd Tribute Experience",
       image: require("../assets/images/americanfloyd.jpg"),
-      date: "temp 11",
+      date: "01/13/2024",
       id: 1,
     },
     {
-      name: "Temp 2",
+      name: "Badfish - A Tribute To Sublime",
       image: require("../assets/images/badfish.jpg"),
-      date: "Temp 22",
+      date: "01/14/2024",
       id: 2,
     },
     {
-      name: "Temp 3",
+      name: "Tell Me Lies - The Fleetwood Mac Experience",
       image: require("../assets/images/tellmelies.jpg"),
-      date: "Temp 33",
+      date: "01/26/2024",
       id: 3,
     },
     {
-      name: "Temp 4",
+      name: "Blackberry Smoke: Be Right Here Tour",
       image: require("../assets/images/blackberry.jpg"),
-      date: "Temp 44",
+      date: "02/17/2024",
       id: 4,
     },
     {
-      name: "Temp 5",
+      name: "Electric Avenue - The 80's MTV Experience",
       image: require("../assets/images/electric.jpg"),
-      date: "Temp 55",
+      date: "02/23/2024",
       id: 5,
     },
   ]);
@@ -52,28 +54,28 @@ function EventScreen(props) {
         },
       ]}
     >
-      <View>
-        <Text>Events</Text>
+      <View style={styles.titleContainer}>
+        <Title>Events</Title>
       </View>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
-        data = {eventItems}
-        keyExtractor={(item) => item.id}
-        alwaysBounceVertical={false}
-        showsVerticalScrollIndicator={false}
-        renderItem={(itemData) => {
+          data={eventItems}
+          keyExtractor={(item) => item.id}
+          alwaysBounceVertical={false}
+          showsVerticalScrollIndicator={false}
+          renderItem={(itemData) => {
             return (
-                <EventItem
-                name={itemDate.item.name}
+              <EventItem
+                name={itemData.item.name}
                 image={itemData.item.image}
                 date={itemData.item.date}
-                />
+              />
             );
-        }}
+          }}
         />
       </View>
-      <View  style={styles.buttonContainer}>
-        <NavButton onPress={props.onNext}>View Home</NavButton>
+      <View style={styles.buttonContainer}>
+        <NavButton onPress={props.onNext}>Home Page</NavButton>
       </View>
     </View>
   );
@@ -84,6 +86,19 @@ export default EventScreen;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+    width: 400,
     alignItems: "center",
+  },
+  titleContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  listContainer: {
+    flex: 7,
+    width: "95%",
+  },
+  buttonContainer: {
+    flex: 1,
+    marginTop: 20,
   },
 });

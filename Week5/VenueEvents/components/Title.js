@@ -1,16 +1,17 @@
-import { View, StyleSheet, Text } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import {StyleSheet, Text } from "react-native";
+import Colors from "../constants/colors";
 
 function Title(props){
-    return <Text style={StyleSheet.title}>{props.children}</Text>
+    return <Text style={styles.title}>{props.children}</Text>
 }
 
 export default Title;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 60,
+    fontSize: 50,
     alignItems: "center",
+    color: Colors.primary500,
+    fontFamily: "squealer"
   },
 });

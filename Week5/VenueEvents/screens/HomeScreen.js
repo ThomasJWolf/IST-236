@@ -1,6 +1,8 @@
 import { View, StyleSheet, Text, Image, Linking } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import NavButton from "../components/NavButton";
+import Title from "../components/Title.js";
+import Colors from "../constants/colors.js"
 
 function HomeScreen(props) {
   // Set Safe Area Screen Bounderies
@@ -19,7 +21,7 @@ function HomeScreen(props) {
       ]}
     >
       <View style={styles.titleContainer}>
-        <Text>House of Bues</Text>
+        <Title>House of Blues</Title>
       </View>
 
       <View style={styles.imageContainer}>
@@ -38,9 +40,9 @@ function HomeScreen(props) {
         </Text>
         <Text
           style={styles.infoText}
-          onPress={() => Linking.openURL("https://l")}
+          onPress={() => Linking.openURL("https://maps.app.goo.gl/s6BmhDMru5QAFr8v5")}
         >
-          maps
+          4640 Hwy 17 S{"\n"}North Myrtle Beach{"\n"}SC 29582
         </Text>
         <Text
           style={styles.infoText}
@@ -49,7 +51,7 @@ function HomeScreen(props) {
           www.houseofblues.com
         </Text>
       </View>
-      <View>
+      <View style={styles.buttonContainer}>
         <NavButton onPress={props.onNext}>View Events</NavButton>
       </View>
     </View>
@@ -81,9 +83,11 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 30,
     textAlign: "center",
-    padding: 7
+    padding: 7,
+    color: Colors.primary500,
+    fontFamily: "squealer"
   },
   buttonContainer: {
-    flex: 1
+    flex: 1,
   },
 });

@@ -1,12 +1,12 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Colors from "../constants/colors.js";
 
 function NavButton(props) {
   return (
     <Pressable android_ripple={{ color: "grey" }} onPress={props.onPress}>
       <View style={styles.buttonContainer}>
-        <View> style={styles.textContainer}
-            <Text style={styles.text}>{props.children}</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>{props.children}</Text>
         </View>
       </View>
     </Pressable>
@@ -19,16 +19,18 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    borderRadius:300,
+    borderWidth: 3,
+    borderColor: Colors.primary500,
+    backgroundColor: Colors.accent800,
     width: 300,
     margin: 10,
   },
-  textContainer: {
-    flex:1
-  },
+  textContainer: {},
   text: {
     padding: 8,
     fontSize: 25,
-    textAlign: "center"
-  }
+    textAlign: "center",
+    color: Colors.primary500,
+    fontFamily: "squealer",
+  },
 });
