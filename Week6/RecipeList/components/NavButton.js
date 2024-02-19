@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import Colors from "../constants/colors.js";
 
+// Adds the NavButton function which every page uses
 function NavButton(props) {
   return (
     <Pressable android_ripple={{ color: "grey" }} onPress={props.onPress}>
@@ -31,6 +32,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     color: Colors.primary300,
-    fontFamily: "paperNoteBold",
+    fontFamily: "ItalianaFont",
   },
 });

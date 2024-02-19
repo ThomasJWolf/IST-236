@@ -20,19 +20,23 @@ function HomeScreen(props) {
         },
       ]}
     >
+
+      {/* Adds the title */}
       <View style={styles.titleContainer}>
-        <Title>Thought Vault</Title>
+        <Title>Recipe Book</Title>
       </View>
 
+      {/* Adds the homepage image */}
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={require("../assets/images/note-taking.jpg")}
+          source={require("../assets/images/italian_recipes.jpg")}
         />
       </View>
 
+      {/* Adds the button to go to the next page */}
       <View style={styles.buttonContainer}>
-        <NavButton onPress={props.onNext}>Go To Notes</NavButton>
+        <NavButton onPress={props.onNext}>Go To Recipes</NavButton>
       </View>
     </View>
   );
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   imageContainer: {
-    flex: 2,
+    flex: 6,
     justifyContent: "center",
     borderWidth: 4,
     borderRadius: 55,

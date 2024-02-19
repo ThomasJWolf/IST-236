@@ -58,9 +58,7 @@ export default function App() {
 
   function deleteNoteHandler(id) {
     setCurrentNotes((currentNotes) => {
-      return currentNotes.filter((item) => {
-        item.id !== id;
-      });
+      return currentNotes.filter((item) => item.id !== id);
     });
   }
 
@@ -68,14 +66,16 @@ export default function App() {
   let screen = <HomeScreen onNext={NotesScreenHandler} />;
 
   if (currentScreen === "add") {
-    screen = <AddNoteScreen onNext={HomeScreenHandler} />;
+    screen = (
+      <AddNoteScreen onAdd={AddNoteHandler} onCancel={NotesScreenHandler} />
+    );
   }
 
   if (currentScreen === "notes") {
     screen = (
       <NotesScreen
-        onNext={HomeScreenHandler}
-        onAdd={AddNoteHandler}
+        onHome={HomeScreenHandler}
+        onAdd={AddNoteScreenHandler}
         onDelete={deleteNoteHandler}
         currentNotes={currentNotes}
       />

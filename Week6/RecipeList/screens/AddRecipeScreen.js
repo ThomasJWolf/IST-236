@@ -8,20 +8,20 @@ import {
   TextInput,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import NavButton from "../components/NavButton";
+import NavButton from "../components/NavButton.js";
 import Title from "../components/Title.js";
 import Colors from "../constants/colors.js";
 import { useState } from "react";
 
-function AddNoteScreen(props) {
+function AddRecipeScreen(props) {
   // Set Safe Area Screen Bounderies
   const insets = useSafeAreaInsets();
 
-  const [noteTitle, setNoteTitle] = useState("");
-  const [noteText, setNoteText] = useState("");
+  const [recipeTitle, setRecipeTitle] = useState("");
+  const [recipeText, setRecipeText] = useState("");
 
-  function addNoteHandler() {
-    props.onAdd(noteTitle, noteText);
+  function addRecipeHandler() {
+    props.onAdd(recipeTitle, recipeText);
     props.onCancel();
   }
 
@@ -37,25 +37,27 @@ function AddNoteScreen(props) {
         },
       ]}
     >
+      {/* Adds the title */}
       <View style={styles.titleContainer}>
-        <Title>Add Notes Screen</Title>
+        <Title>Add New Recipes</Title>
       </View>
 
+      {/* Adds a scrollview section where the user can enter the title and text of the new recipe */}
       <View style={styles.scrollContainer}>
         <ScrollView>
-          <View style={styles.noteTitleContainer}>
+          <View style={styles.recipeTitleContainer}>
             <TextInput
-              placeholder="Enter Note Title Here"
-              style={styles.noteTitle}
-              onChangeText={setNoteTitle}
+              placeholder="Enter Recipe Title Here"
+              style={styles.recipeTitle}
+              onChangeText={setRecipeTitle}
             />
           </View>
 
-          <View style={styles.noteTextContainer}>
+          <View style={styles.recipeTextContainer}>
             <TextInput
-              placeholder="Enter Note Text Here"
-              style={styles.noteText}
-              onChangeText={setNoteText}
+              placeholder="Enter Recipe Text Here"
+              style={styles.recipeText}
+              onChangeText={setRecipeText}
               textAlignVertical="top"
               multiline={true}
               numberOfLines={20}
@@ -64,9 +66,10 @@ function AddNoteScreen(props) {
         </ScrollView>
       </View>
 
+      {/* Adds buttons to submit the recipe or go back */}
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
-          <NavButton onPress={addNoteHandler}>Submit</NavButton>
+          <NavButton onPress={addRecipeHandler}>Submit</NavButton>
         </View>
 
         <View style={styles.button}>
@@ -77,7 +80,7 @@ function AddNoteScreen(props) {
   );
 }
 
-export default AddNoteScreen;
+export default AddRecipeScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -90,25 +93,25 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     marginBottom: 50,
   },
-  scrollContainer:{
+  scrollContainer: {
     flex: 5,
   },
-  noteTitleContainer:{
+  recipeTitleContainer: {
     borderWidth: 3,
     backgroundColor: Colors.primary300,
   },
-  noteTitle:{
+  recipeTitle: {
     color: Colors.accent800,
     fontWeight: "bold",
     fontSize: 30,
   },
-  noteTextContainer: {
+  recipeTextContainer: {
     marginVertical: 5,
     borderWidth: 3,
     backgroundColor: Colors.primary300,
     alignItems: "flex-start",
   },
-  noteText:{
+  recipeText: {
     color: Colors.primary800,
   },
   buttonContainer: {

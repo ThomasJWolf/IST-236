@@ -1,7 +1,8 @@
 import { View, StyleSheet, Text, Pressable, Button } from "react-native";
 import Colors from "../constants/colors.js";
 
-function NotesItem(props) {
+// Creates the RecipesItem function, which displays the items on AddRecipeScreen
+function RecipesItem(props) {
   return (
       <View style={styles.item}>
         <View style={styles.itemTitleContainer}>
@@ -19,7 +20,7 @@ function NotesItem(props) {
   );
 }
 
-export default NotesItem;
+export default RecipesItem;
 
 const styles = StyleSheet.create({
 item: {
@@ -33,7 +34,7 @@ itemTitleContainer: {
     justifyContent: "center",
 },
 itemTitle: {
-    fontFamily: "paperNoteBold",
+    fontFamily: "ItalianaFont",
     fontSize: 20,
     color: Colors.primary300,
     padding: 8,

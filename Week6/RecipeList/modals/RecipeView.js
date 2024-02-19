@@ -1,10 +1,11 @@
 import { View, StyleSheet, Text, Image, Linking, Modal } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import NavButton from "../components/NavButton";
+import NavButton from "../components/NavButton.js";
 import Title from "../components/Title.js";
 import Colors from "../constants/colors.js";
 
-function NoteView(props) {
+// Creates the RecipeView Modal to show the title and text of the selected recipe
+function RecipeView(props) {
   // Set Safe Area Screen Bounderies
   const insets = useSafeAreaInsets();
 
@@ -30,14 +31,14 @@ function NoteView(props) {
         </View>
 
         <View style={styles.buttonContainer}>
-          <NavButton onPress={props.onClose}>Return To Thoughts</NavButton>
+          <NavButton onPress={props.onClose}>Return To Recipes</NavButton>
         </View>
       </View>
     </Modal>
   );
 }
 
-export default NoteView;
+export default RecipeView;
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -51,9 +52,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 30,
+    fontSize: 50,
     textAlign: "center",
-    fontFamily: "paperNoteSketch",
+    fontFamily: "ItaliannoFont",
     color: Colors.primary300,
   },
   textContainer: {
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary300,
     fontSize: 20,
-    fontFamily: "paperNote",
+    fontFamily: "ItalianaFont",
   },
   buttonContainer: {
     flex: 1,
