@@ -55,8 +55,8 @@ function GameScreen(props) {
       // Ace of Clubs
       if (userHand.includes("aceClubs")) {
         setUserHand((prevUserCards) => {
-          let newUserCards = prevUserCards;
-          newUserCards[newUserCards.indexOf("aceClubs")] = "lowAceClubs";
+          let newUserCard = prevUserCards;
+          newUserCard[newUserCard.indexOf("aceClubs")] = "lowAceClubs";
           return newUserCard;
         });
 
@@ -68,8 +68,8 @@ function GameScreen(props) {
         // Ace of Dimonds
       } else if (userHand.includes("aceDimonds")) {
         setUserHand((prevUserCards) => {
-          let newUserCards = prevUserCards;
-          newUserCards[newUserCards.indexOf("aceDimonds")] = "lowAceDimonds";
+          let newUserCard = prevUserCards;
+          newUserCard[newUserCard.indexOf("aceDimonds")] = "lowAceDimonds";
           return newUserCard;
         });
 
@@ -80,8 +80,8 @@ function GameScreen(props) {
         // Ace of Hearts
       } else if (userHand.includes("aceHearts")) {
         setUserHand((prevUserCards) => {
-          let newUserCards = prevUserCards;
-          newUserCards[newUserCards.indexOf("aceHearts")] = "lowAceHearts";
+          let newUserCard = prevUserCards;
+          newUserCard[newUserCard.indexOf("aceHearts")] = "lowAceHearts";
           return newUserCard;
         });
 
@@ -92,8 +92,8 @@ function GameScreen(props) {
         // Ace of Spades
       } else if (userHand.includes("aceSpades")) {
         setUserHand((prevUserCards) => {
-          let newUserCards = prevUserCards;
-          newUserCards[newUserCards.indexOf("aceSpades")] = "lowAceSpades";
+          let newUserCard = prevUserCards;
+          newUserCard[newUserCard.indexOf("aceSpades")] = "lowAceSpades";
           return newUserCard;
         });
 

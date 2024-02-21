@@ -1,0 +1,103 @@
+<mxfile host="app.diagrams.net" modified="2024-02-19T20:13:51.774Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="rykxXblmOi_M-9VofFIF" version="23.1.2" type="device">
+  <diagram name="Page-1" id="My04iPDE87iwI_xUb_gP">
+    <mxGraphModel dx="1804" dy="905" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2027" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GmGY9-1nHvUCIWFC042A-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-17" value="Recipe book cover" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="50" y="150" width="270" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-20" value="Home Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="125" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-24" value="Recipe Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="515" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-25" value="Recipe #1" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="430" y="160" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-30" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Recipe Book&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="82.5" y="80" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-33" value="Recipe Screen Button" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="116.25" y="520" width="143.75" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-1" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Current Recipes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="472.5" y="80" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-2" value="View" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="165" width="52.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-3" value="Delete" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="165" width="52.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-4" value="Recipe #2" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="430" y="200" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-5" value="View" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="205" width="52.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-6" value="Delete" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="205" width="52.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-7" value="Recipe #3" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="430" y="240" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-8" value="View" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="245" width="52.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-9" value="Delete" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="245" width="52.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-14" value="Add Recipe Screen Button" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="520" width="137.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-15" value="Home Screen Button" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="520" width="137.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-17" value="Add Recipe Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="905" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-18" value="Recipe Title Here" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="820" y="170" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-19" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Add New Recipes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="862.5" y="80" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-22" value="Recipe Text Here" style="rounded=0;align=left;horizontal=1;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="210" width="290" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-28" value="Add Recipe Button" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="520" width="137.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-29" value="Cancel Button" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="520" width="137.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-35" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-36" value="Modal Recipe Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1295" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-38" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Recipe Title&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1252.5" y="80" width="205" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-39" value="Recipe Text" style="rounded=0;align=left;horizontal=1;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="140" width="290" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="RiIJBUmPKDNDjVvzrm8D-41" value="Return to Add Recipe Screen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1286.25" y="525" width="137.5" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
