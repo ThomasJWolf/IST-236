@@ -14,7 +14,7 @@ import Colors from "../constants/colors.js";
 import { RadioGroup } from "react-native-radio-buttons-group";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-function HomeScreen(props) {
+function OrderReviewScreen(props) {
   // Set Safe Area Screen Bounderies
   const insets = useSafeAreaInsets();
 
@@ -35,20 +35,79 @@ function HomeScreen(props) {
         <Title>Order Summery</Title>
       </View>
 
-      <View style={styles.subTitleContainer}>>
-        <Text>Your order has been placed, with you rorder details below</Text>
+      <View style={styles.subTitleContainer}>
+        <Text style={styles.subTitle}>
+          Your order has been placed, with you rorder details below
+        </Text>
       </View>
 
       <View style={styles.ingredientsContainer}>
-        <Text style={styles.ingredient}>Sandwich Sixe</Text>
+        <Text style={styles.ingredient}>Sandwich Size:</Text>
         <Text style={styles.subIngredient}>{props.size}</Text>
+        <Text style={styles.ingredient}>Bread:</Text>
+        <Text style={styles.subIngredient}>{props.bread}</Text>
+        <Text style={styles.ingredient}>Cheese:</Text>
+        <Text style={styles.subIngredient}>{props.cheese}</Text>
+        <Text style={styles.ingredient}>Meats:</Text>
+        {props.meats.map((item) => {
+          if (item.value) {
+            return (
+              <Text key={item.id} style={styles.subIngredient}>
+                {item.name}
+              </Text>
+            );
+          }
+        })}
+        <Text style={styles.ingredient}>Sauces:</Text>
+        {props.sauces.map((item) => {
+          if (item.value) {
+            return (
+              <Text key={item.id} style={styles.subIngredient}>
+                {item.name}
+              </Text>
+            );
+          }
+        })}
+        <Text style={styles.ingredient}>Vegetables:</Text>
+        {props.vegetables.map((item) => {
+          if (item.value) {
+            return (
+              <Text key={item.id} style={styles.subIngredient}>
+                {item.name}
+              </Text>
+            );
+          }
+        })}
+        <Text style={styles.ingredient}>Add Ons:</Text>
+        <Text style={styles.subIngredient}>
+          {props.toasted ? "Toasted" : ""}
+        </Text>
+        <Text style={styles.subIngredient}>
+          {props.doubleMeat ? "Double Meat" : ""}
+        </Text>
+        <Text style={styles.subIngredient}>
+          {props.doubleCheese ? "Double Cheese" : ""}
+        </Text>
+        <Text style={styles.subIngredient}>
+          {props.mealCombo ? "Meal Combo" : ""}
+        </Text>
       </View>
 
+      <View style={styles.subTitleContainer}>
+        <Text style={styles.subTitle}>Subtotal: ${props.price.toFixed(2)}</Text>
+        <Text style={styles.subTitle}>Sales Tax: ${(props.price * 0.06).toFixed(2)}</Text>
+        <Text style={styles.subTitle}>Total: ${(props.price + props.price * 0.06).toFixed(2)}</Text>
+      </View>
+
+      {/* Adds the button to go to the next page */}
+      <View style={styles.buttonContainer}>
+        <NavButton onPress={props.onNext}>Return Home</NavButton>
+      </View>
     </View>
   );
 }
 
-export default HomeScreen;
+export default OrderReviewScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -64,51 +123,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 3,
   },
-  scrollContainer: {
-    flex: 1,
-  },
-  radioContainer: {
+  subTitleContainer: {
     justifyContent: "center",
     alignItems: "center",
+    marginVertical: 10,
   },
-  radioHeader: {
-    fontSize: 30,
+  subTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
     color: Colors.primary500,
   },
-  radioGroup: {
-    paddingBottom: 20,
+  ingredientsContainer: {
+    flex: 3,
   },
-  radioGroupLabels: {
-    fontSize: 15,
-    color: Colors.primary500,
-  },
-  rowContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingBottom: 20,
-  },
-  checkBoxContainer: {},
-  checkBoxHeader: {
+  ingredient: {
     fontSize: 20,
     color: Colors.primary500,
   },
-  checkBoxSubContainer: {
-    padding: 2,
-  },
-  cheeseContainer: {
-    alignItems: "center",
-  },
-  addOnsContainer: {
-    justifyContent: "space-between",
-  },
-  addOnsSubContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  addOnsLabel: {
-    colors: Colors.primary500,
-    fontSize: 20,
+  subIngredient: {
+    textAlign: "center",
+    fontSize: 17,
+    fontWeight: "bold",
   },
   buttonContainer: {
     alignItems: "center",

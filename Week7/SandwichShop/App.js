@@ -5,6 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import HomeScreen from "./screens/HomeScreen";
 import { useFonts } from "expo-font";
 import Colors from "./constants/colors.js";
+import OrderReviewScreen from "./screens/OrderReviewScreen.js"
 
 export default function App() {
   //Set up our custom fonts
@@ -165,32 +166,12 @@ export default function App() {
 
   // Sets the current screens
   function homeScreenHandler() {
+    setCurrentPrice(0);
     setCurrentScreen("home");
   }
 
-  function OrderReviewHandler() {
-    let price = 0;
-    for (let i = 0; i < meats.length; i++) {
-      if (meats[i].value) {
-        price = price + meats[i].price;
-      }
-    }
+  function orderReviewScreenHandler() {
 
-    if (doubleMeat) {
-      price = price * 2;
-    }
-
-    if (doubleCheese) {
-      price = price + 1.25;
-    }
-
-    if (mealCombo) {
-      price = price + 3.75;
-    }
-
-    price = price + sizeRadioButtons[sizeId].price;
-
-    setCurrentPrice(price);
     setCurrentScreen("review");
   }
 
@@ -234,6 +215,33 @@ export default function App() {
     setMealCombo((previous) => !previous);
   }
 
+  
+  function orderReviewHandler() {
+    let price = 0;
+    for (let i = 0; i < meats.length; i++) {
+      if (meats[i].value) {
+        price = price + meats[i].price;
+      }
+    }
+
+    if (doubleMeat) {
+      price = price * 2;
+    }
+
+    if (doubleCheese) {
+      price = price + 1.25;
+    }
+
+    if (mealCombo) {
+      price = price + 3.75;
+    }
+
+    price = price + sizeRadioButtons[sizeId].price;
+
+    setCurrentPrice(price);
+    setCurrentScreen("review");
+  }
+
   // Determine which screen to be on
   let screen = (
     <HomeScreen
@@ -260,13 +268,13 @@ export default function App() {
       onSetDoubleCheese={setDoubleCheeseHandler}
       onSetToasted={setToastedHandler}
       onSetMealCombo={setMealComboHandler}
-      onNext={OrderReviewHandler}
+      onNext={orderReviewHandler}
     />
   );
 
   if (currentScreen === "review") {
     screen = (
-      <OrderReviewHandler
+      <OrderReviewScreen
         size={sizeRadioButtons[sizeId].value}
         bread={breadRadioButtons[breadId].value}
         cheese={cheeseRadioButtons[cheeseId].value}

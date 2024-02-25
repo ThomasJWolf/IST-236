@@ -130,7 +130,7 @@ function HomeScreen(props) {
                   <BouncyCheckbox
                     key={item.id}
                     text={item.name}
-                    onPress={props.onSetMeats.bind(this, item.id)}
+                    onPress={props.onSetVegetables.bind(this, item.id)}
                     textStyle={{
                       textDecorationLine: "none",
                       color: Colors.primary500,
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   addOnsLabel: {
-    colors: Colors.primary500,
+    color: Colors.primary500,
     fontSize: 20,
   },
   buttonContainer: {
