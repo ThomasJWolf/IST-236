@@ -42,7 +42,7 @@ function OrderReviewScreen(props) {
         >
           {/* Adds the title */}
           <View style={styles.titleContainer}>
-            <Title>Order Summery</Title>
+            <Title>Order Summary</Title>
           </View>
 
           <View style={styles.subTitleContainer}>
