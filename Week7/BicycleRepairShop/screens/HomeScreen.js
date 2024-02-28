@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 2,
     borderRadius: 5,
-    borderColor: Colors.accent500, // Changed to Muted Orange
+    borderColor: Colors.accent500,
     paddingHorizontal: 30,
     paddingVertical: 5,
     alignContent: "center",
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   checkBoxContainer: {},
   checkBoxHeader: {
     fontSize: 20,
-    color: Colors.accent500, // Changed to Black
+    color: Colors.accent500,
     fontFamily: "Text"
 
   },
