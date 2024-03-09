@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "HotelReservation",
-    "slug": "HotelReservation",
+    "name": "BlackJack",
+    "slug": "BlackJack",
     "version": "1.0.0",
     "orientation": "auto",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/italy-splash.jpg",
+      "image": "./assets/images/CardsSplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.primary500,
     borderRadius: 300,
-    width: 1000,
+    width: '100%',
     maxWidth: "70%",
     marginHorizontal: 10,
     marginVertical: 10,
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   },
   text: {
     padding: 8,
-    fontFamily: "hotel",
+    fontFamily: "campground",
     textAlign: "center",
     color: Colors.primary300,
-  },
+  }
 });

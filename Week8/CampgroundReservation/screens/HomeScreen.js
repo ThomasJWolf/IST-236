@@ -81,29 +81,29 @@ function HomeScreen(props) {
     setNumGuests(index);
   }
 
-  const bedCounts = [1, 2, 3, 4];
-  const [numBeds, setNumBeds] = useState(0);
-  const [showNumBeds, setShowNumBeds] = useState(false);
+  const siteCounts = [1, 2, 3, 4];
+  const [numSites, setNumSites] = useState(0);
+  const [showNumSites, setShowNumSites] = useState(false);
 
-  function showNumBedsPicker() {
-    setShowNumBeds(true);
+  function showNumSitesPicker() {
+    setShowNumSites(true);
   }
 
-  function hideNumBedsPicker() {
-    setShowNumBeds(false);
+  function hideNumSitesPicker() {
+    setShowNumSites(false);
   }
 
-  function onChangeNumBeds(index) {
-    setNumBeds(index);
+  function onChangeNumSites(index) {
+    setNumSites(index);
   }
 
   const [results, setResults] = useState("");
 
   function onReserveHandler() {
-    let res = `Check In:\t\t${checkIn.toDateString()}\n`;
-    res = res + `Check Out:\t\t${checkOut.toDateString()}\n`;
+    let res = `Check In:\t\t\n${checkIn.toDateString()}\n`;
+    res = res + `Check Out:\t\t\n${checkOut.toDateString()}\n`;
     res = res + `Number of Guests:\t\t${guestCounts[numGuests]}\n`;
-    res = res + `Number of Beds:\t\t${bedCounts[numBeds]}\n`;
+    res = res + `Number of Sites:\t\t${siteCounts[numSites]}\n`;
     setResults(res);
   }
 
@@ -118,7 +118,7 @@ function HomeScreen(props) {
   };
   return (
     <ImageBackground
-      source={require("../assets/images/italy.jpg")}
+      source={require("../assets/images/campground.png")}
       resize="cover"
       style={styles.rootContainer}
       imageStyle={styles.backgroundImage}
@@ -137,7 +137,7 @@ function HomeScreen(props) {
         <ScrollView style={styles.scrollContainer}>
           {/* Adds the title */}
           <View style={styles.titleContainer}>
-            <Title>Riviera Retreat</Title>
+            <Title>Pine Haven</Title>
           </View>
 
           <View style={styles.rowContainer}>
@@ -258,12 +258,12 @@ function HomeScreen(props) {
 
           <View style={styles.rowContainer}>
             <Text style={[styles.dateLabel, dateLabelFlex]}>
-              Number of Beds:
+              Number of Sites:
             </Text>
-            <Pressable onPress={showNumBedsPicker}>
+            <Pressable onPress={showNumSitesPicker}>
               <View style={styles.dateContainer}>
                 <Text style={[styles.dateText, dateTextFlex]}>
-                  {bedCounts[numBeds]}
+                  {siteCounts[numSites]}
                 </Text>
               </View>
             </Pressable>
@@ -271,21 +271,21 @@ function HomeScreen(props) {
             <Modal
               animationType="slide"
               transparent={true}
-              visible={showNumBeds}
+              visible={showNumSites}
               supportedOrientations={["portrait", "landscape"]}
             >
               <View style={styles.centeredModalView}>
                 <View style={styles.modalView}>
                   <Text style={[styles.dateText, dateTextFlex]}>
-                    Enter Number of Beds:
+                    Enter Number of Sites:
                   </Text>
                   <WheelPicker
-                    selectedIndex={numBeds}
-                    options={bedCounts}
-                    onChange={onChangeNumBeds}
+                    selectedIndex={numSites}
+                    options={siteCounts}
+                    onChange={onChangeNumSites}
                     containerStyle={{ width: 200 }}
                   />
-                  <Button title="Confirm" onPress={hideNumBedsPicker} />
+                  <Button title="Confirm" onPress={hideNumSitesPicker} />
                 </View>
               </View>
             </Modal>
@@ -324,11 +324,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     borderColor: Colors.primary500,
-    backgroundColor: Colors.primary300,
+    backgroundColor: Colors.accent800o3,
   },
   scrollContainer: {
     flex: 1,
-    width: 3000,
+    width: "100%",
     maxWidth: "95%",
   },
   rowContainer: {
@@ -339,14 +339,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   dateContainer: {
-    backgroundColor: Colors.primary300o5,
+    backgroundColor: Colors.accent800o3,
     padding: 10,
   },
   dateLabel: {
-    fontSize: 100,
+    fontSize: 18,
     color: Colors.primary500,
-    fontFamily: "hotel",
-    textShadowColor: "black",
+    fontFamily: "campground",
+    textShadowColor: Colors.accent500,
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2,
   },
@@ -379,9 +379,9 @@ const styles = StyleSheet.create({
   results: {
     textAlign: "center",
     color: Colors.primary500,
-    fontFamily: "hotel",
-    textShadowColor: "black", // Outline color
-    textShadowOffset: { width: 2, height: 2 }, // Outline offset
-    textShadowRadius: 2, // Outline width
+    fontFamily: "campground",
+    textShadowColor: Colors.accent500,
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 2,
   },
 });
