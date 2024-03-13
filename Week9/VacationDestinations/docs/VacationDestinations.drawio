@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" modified="2024-03-13T03:57:31.127Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="V9Vu31vS8ny5BiddbIMC" version="24.0.5" type="device">
+  <diagram name="Page-1" id="My04iPDE87iwI_xUb_gP">
+    <mxGraphModel dx="1322" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2027" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GmGY9-1nHvUCIWFC042A-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="GmGY9-1nHvUCIWFC042A-20" value="Home Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="125" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mo8nO4ta5W9fyB-Dc2Dk-6" value="Location" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="33.13" y="160" width="136.87" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-1" value="Vacation Location" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="40" width="370" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-2" value="Location" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="160" width="136.87" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-3" value="Location" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="33.13" y="310" width="136.87" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-4" value="Location" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="310" width="136.87" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-5" value="Location" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="33.13" y="460" width="136.87" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-6" value="Location" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="460" width="136.87" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-8" value="VacationsOverviewScreen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="525" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-9" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="426.56" y="140" width="316.87" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-10" value="Location" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="370" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-16" value="Image" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="440" y="155" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-17" value="Location Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="155" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-18" value="Location Price" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="529.99" y="185" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-19" value="Location Raiting" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="535" y="210" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-20" value="Location Year" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="693.43" y="205" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-21" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="426.55" y="260" width="316.87" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-22" value="Image" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="439.99" y="275" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-23" value="Location Name" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="529.99" y="275" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-24" value="Location Price" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="529.98" y="305" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-25" value="Location Raiting" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="534.99" y="330" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-26" value="Location Year" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="693.42" y="325" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-27" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="40" width="370" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-28" value="Modal Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="925" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-30" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="40" width="370" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-37" value="Image" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="825" y="120" width="320" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="hwPYWvXYoMR_cGDD2TVB-43" value="Return" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="500" width="230" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
