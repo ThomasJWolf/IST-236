@@ -4,11 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 function ListingItem(props) {
   const navigation = useNavigation();
 
-    function selectedListingHandler() {
-      navigation.navigate("ListingDetail", {
-        listingId: props.id,
-      });
-    }
+  function selectedListingHandler() {
+    navigation.navigate("ListingDetails", {
+      listingId: props.id,
+    });
+  }
 
   return (
     <View
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imageContainer: {
-    height: 300
+    height: 300,
   },
   image: {
     height: "100%",
@@ -59,23 +59,23 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   price: {
     fontSize: 35,
     fontFamily: "playfairBold",
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   space: {
     fontSize: 25,
     fontFamily: "playfair",
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   address: {
     textAlign: "center",
     width: "100%",
     fontSize: 15,
     fontFamily: "playfair",
-    paddingBottom: 5
-  }
+    paddingBottom: 5,
+  },
 });

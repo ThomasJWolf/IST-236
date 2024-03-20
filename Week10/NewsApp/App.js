@@ -9,16 +9,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import BookmarksScreen from "./screens/BookmarksScreen.js";
-import HouseListingsScreen from "./screens/HouseListingsScreen.js";
-import TownhouseListingsScreen from "./screens/TownhouseListingsScreen.js";
-import TrailerListingsScreen from "./screens/TrailerListingsScreen.js";
-import CondoListingsScreen from "./screens/CondoListingsScreen.js";
-import ListingDetailsScreen from "./screens/ListingDetailsScreen.js";
-import {
-  Entypo,
-  MaterialIcons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import USNewsScreen from "./screens/USNewsScreen.js";
+import TechNewsScreen from "./screens/TechNewsScreen.js";
+import WorldNewsScreen from "./screens/WorldNewsScreen.js";
+import NewsDetailsScreen from "./screens/NewsDetailsScreen.js";
+import { Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 // Create navigator objects
 const Stack = createNativeStackNavigator();
@@ -29,13 +24,13 @@ const Tab = createBottomTabNavigator();
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
-      initialRouteName="Listings"
+      initialRouteName="News"
       screenOptions={{
         headerTintColor: "white",
         headerStyle: { backgroundColor: Colors.primary500 },
         contentStyle: { backgroundColor: "black" },
         headerTitleStyle: {
-          fontFamily: "nolluqa",
+          fontFamily: "SandeMore",
           fontSize: 40,
           color: Colors.accent800,
         },
@@ -47,22 +42,22 @@ function DrawerNavigator() {
       }}
     >
       <Drawer.Screen
-        name="Listings"
+        name="News"
         component={TabsNavigator}
         options={{
-          title: "All Listings",
-          drawerLabel: "Real Estate Listings",
+          title: "All News",
+          drawerLabel: "All News",
           drawerIcon: ({ color, size }) => (
             <Entypo name="list" color={color} size={size} />
           ),
         }}
       />
       <Drawer.Screen
-        name="BookmarkedListings"
+        name="BookmarkedNews"
         component={BookmarksScreen}
         options={{
-          title: "Bookmarked Listings",
-          drawerLabel: "Bookmarked Listings",
+          title: "Bookmarked News",
+          drawerLabel: "Bookmarked News",
           drawerIcon: ({ color, size }) => (
             <Entypo name="bookmark" color={color} size={size} />
           ),
@@ -72,11 +67,11 @@ function DrawerNavigator() {
   );
 }
 
-// Tabs navigation setup for listing categories
+// Tabs navigation setup for News categories
 function TabsNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Houses"
+      initialRouteName="USNews"
       screenOptions={{
         tabBarShowLabel: true,
         tabBarActiveTintColor: Colors.primary300o5,
@@ -84,58 +79,42 @@ function TabsNavigator() {
         tabBarActiveBackgroundColor: Colors.primary800,
         tabBarInactiveBackgroundColor: Colors.primary500,
         tabBarStyle: { backgroundColor: Colors.primary500 },
-        tabBarLabelStyle: { fontFamily: "playfairBold", fontSize: 12 },
+        tabBarLabelStyle: { fontFamily: "SandeMore", fontSize: 12},
       }}
     >
       <Tab.Screen
-        name="HouseListings"
-        component={HouseListingsScreen}
+        name="USNews"
+        component={USNewsScreen}
         options={{
           headerShown: false,
-          title: "Houses",
-          tabBarLabel: "Houses",
+          title: "US News",
+          tabBarLabel: "US News",
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="home" color={color} size={size} />
+            <FontAwesome5 name="flag-usa" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="CondoListings"
-        component={CondoListingsScreen}
+        name="WorldNews"
+        component={WorldNewsScreen}
         options={{
           headerShown: false,
-          title: "Condos",
-          tabBarLabel: "Condos",
+          title: "World News",
+          tabBarLabel: "World News",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="apartment" color={color} size={size} />
+            <Entypo name="globe" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="TownhouseListings"
-        component={TownhouseListingsScreen}
+        name="TechNews"
+        component={TechNewsScreen}
         options={{
           headerShown: false,
-          title: "Townhouses",
-          tabBarLabel: "Townhouses",
+          title: "Tech News",
+          tabBarLabel: "Tech News",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="holiday-village" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="TrailerListings"
-        component={TrailerListingsScreen}
-        options={{
-          headerShown: false,
-          title: "Trailers",
-          tabBarLabel: "Mobile Homes",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="truck-trailer"
-              color={color}
-              size={size}
-            />
+            <Entypo name="code" color={color} size={size} />
           ),
         }}
       />
@@ -148,10 +127,7 @@ function TabsNavigator() {
 export default function App() {
   //Set up our custom fonts
   const [fontsLoaded, fontError] = useFonts({
-    nolluqa: require("./assets/fonts/NolluqaRegular.otf"),
-    playfair: require("./assets/fonts/Playfair.ttf"),
-    playfairBold: require("./assets/fonts/PlayfairBold.ttf"),
-    playfairBoldItalic: require("./assets/fonts/PlayfairBoldItalic.ttf"),
+    SandeMore: require("./assets/fonts/SandeMore-Regular.otf"),
   });
 
   // Function to hide the splash screen after fonts are loaded
@@ -185,8 +161,8 @@ export default function App() {
               }}
             />
             <Stack.Screen
-              name="ListingDetails"
-              component={ListingDetailsScreen}
+              name="NewsDetails"
+              component={NewsDetailsScreen}
               options={{
                 headerBackTitleVisible: false,
               }}
