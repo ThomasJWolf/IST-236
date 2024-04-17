@@ -18,8 +18,11 @@ function Group(props) {
       <FlatList
         data={props.items}
         keyExtractor={(item) => item.id}
-        renderItem={renderGroupItem}
         showsVerticalScrollIndicator={false}
+        renderItem={renderGroupItem}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={styles.groupsList}
       />
     </View>
   );
@@ -39,6 +42,16 @@ const styles = StyleSheet.create({
   flatlist: {
     flex: 1,
     padding: 16,
-    backgroundColor: Color.background
+    backgroundColor: Color.background,
+  },
+  groupsContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    padding: 5,
+    flexGrow: 0,
   },
 });

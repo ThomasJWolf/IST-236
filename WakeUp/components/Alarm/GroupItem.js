@@ -19,6 +19,7 @@ function GroupItem(props) {
     navigation.navigate("GroupDetails", {
       groupId: props.id,
     });
+
   }
 
   return (
@@ -33,7 +34,7 @@ function GroupItem(props) {
         },
       ]}
     >
-      <Pressable onPress={selectedGroupHandler}>
+      <Pressable android_ripple={{ color: "grey" }} onPress={handleGroupPress}>
         <View style={styles.groupContainer}>
           <Text style={styles.name}>{props.name}</Text>
         </View>

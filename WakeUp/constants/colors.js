@@ -5,7 +5,7 @@ const Colors = {
   primary300o5: "rgba(255, 255, 255, 0.5)",
   primary300: "#ffffff",
   primary500o8: "rgba(52, 73, 94, 0.8)",
-  primary500: "#160000",
+  primary500: "#2c0000",
   primary800: "#000000",
   background: "#111111",
 };

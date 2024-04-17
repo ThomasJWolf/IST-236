@@ -1,7 +1,7 @@
 import AlarmGroups from "../models/groups.js";
 
 export const ALARM_GROUPS = [
-  new AlarmGroups(0, "  +  ", []),
+  new AlarmGroups(0, "  0  ", []),
   new AlarmGroups(1, "Group 1", [1, 2, 3]),
   new AlarmGroups(2, "Group 2", [1, 2]),
   new AlarmGroups(3, "Group 3", [1]),

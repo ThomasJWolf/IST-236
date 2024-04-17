@@ -6,45 +6,44 @@ import { View, StyleSheet, Dimensions, Text } from "react-native";
 import Colors from "../constants/colors";
 import { FlatList, Switch } from "react-native-gesture-handler";
 import GroupButton from "../components/GroupButton";
+import Group from "../components/Alarm/Group";
 
 const screenWidth = Dimensions.get("window").width; // Get the full width of the screen
 const buttonWidth = 100; // Width of the button, must match the style below
 
 function AlarmsScreen() {
-  const displayedAlarms = ALARMS.filter((alarmItem) => alarmItem);
   const displayedGroups = ALARM_GROUPS.filter((groupItem) => groupItem);
 
-  const renderGroupItem = ({ item }) => (
-    <View style={styles.groupItem}>
-      <Text style={styles.groupText}>{item.name}</Text>
-    </View>
-  );
+    const displayedAlarms = ALARMS.filter((alarmItem) =>
+    displayedGroups.some((group) => group.alarms.includes(alarmItem.id))
+    );
 
   return (
     <View style={styles.screen}>
       <View style={styles.groupsContainer}>
-      <FlatList
-        data={displayedGroups}
-        renderItem={renderGroupItem}
-        keyExtractor={(item) => item.id}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        style={styles.groupsList}
-      />
-      <View style={styles.groupsEdit}>
-        <GroupButton onPress={() => console.log("Edit Groups")}>
-          Edit
-        </GroupButton>
-        <GroupButton onPress={() => console.log("Add Group")}>+</GroupButton>
-        <GroupButton
-          style={{
-            buttonContainer: {paddingBottom: 45},
-          }}
-          onPress={() => console.log("Toggle Settings")}
-        >
-          <Switch />
-        </GroupButton>
-      </View>
+        {/* <FlatList
+          data={displayedGroups}
+          renderItem={renderGroupItem}
+          keyExtractor={(item) => item.id}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={styles.groupsList}
+        /> */}
+        <Group items={displayedGroups}/>
+        <View style={styles.groupsEdit}>
+          <GroupButton onPress={() => console.log("Edit Groups")}>
+            Edit
+          </GroupButton>
+          <GroupButton onPress={() => console.log("Add Group")}>+</GroupButton>
+          <GroupButton
+            style={{
+              buttonContainer: { paddingBottom: 45 },
+            }}
+            onPress={() => console.log("Toggle Settings")}
+          >
+            <Switch />
+          </GroupButton>
+        </View>
       </View>
       <Alarm items={displayedAlarms} />
       <View style={styles.buttonContainer}>
