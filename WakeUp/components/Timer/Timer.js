@@ -1,39 +1,47 @@
+import React, { useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import TimerItem from "./TimerItem";
+import { useSelector } from "react-redux";
 import Color from "../../constants/colors";
 
-function Timer(props) {
-  function renderTimerItem(itemData) {
-    const timerItemProps = {
-      id: itemData.item.id,
-      title: itemData.item.title,
-      time: itemData.item.time,
-      timerIndex: itemData.index,
-    };
-    return <TimerItem {...timerItemProps} />;
-  }
+const Timer = ({ items, containerStyle }) => {
+  // Access the timers from Redux store
+  const [timers, setTimers] = useState(
+    items.map((timer) => ({
+      ...timer,
+    }))
+  );
+
+  const handleToggle = (id) => () => {
+    const updatedTimers = timers.map((timer) =>
+      timer.id === id ? { ...timer, active: !timer.active } : timer
+    );
+    setTimers(updatedTimers);
+  };
+
+  const renderTimerItem = ({ item }) => {
+    return <TimerItem {...item} onToggle={handleToggle(item.id)} />;
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={props.items}
+        data={timers}
         keyExtractor={(item) => item.id}
         renderItem={renderTimerItem}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={() => <View style={{ height: 100 }} />}
       />
     </View>
   );
-}
-
-export default Timer;
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: Color.background
-  },
-  backgroundImage: {
-    opacity: 0.1,
+    backgroundColor: Color.background,
   },
 });
+
+export default Timer;

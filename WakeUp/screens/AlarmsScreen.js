@@ -1,67 +1,59 @@
-import Alarm from "../components/Alarm/Alarm";
-import { ALARMS } from "../data/alarms";
-import { ALARM_GROUPS } from "../data/groups";
-import NavButton from "../components/NavButton";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Dimensions, Text } from "react-native";
 import Colors from "../constants/colors";
-import { FlatList, Switch } from "react-native-gesture-handler";
-import GroupButton from "../components/GroupButton";
 import Group from "../components/Alarm/Group";
+import Alarm from "../components/Alarm/Alarm";
+import GroupButton from "../components/GroupButton";
+import NavButton from "../components/NavButton";
+import {ALARMS} from "../data/alarms"; // Assuming these are your data imports
+import {ALARM_GROUPS} from "../data/groups"; // Assuming these are your data imports
 
 const screenWidth = Dimensions.get("window").width; // Get the full width of the screen
 const buttonWidth = 100; // Width of the button, must match the style below
 
 function AlarmsScreen() {
-  const displayedGroups = ALARM_GROUPS.filter((groupItem) => groupItem);
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [displayedAlarms, setDisplayedAlarms] = useState(ALARMS);
 
-    const displayedAlarms = ALARMS.filter((alarmItem) =>
-    displayedGroups.some((group) => group.alarms.includes(alarmItem.id))
-    );
+  useEffect(() => {
+    // On component mount, show all alarms
+    setDisplayedAlarms(ALARMS);
+  }, []);
+
+  const handleGroupPress = (groupId, alarms) => {
+    // Set the selected group
+    setSelectedGroup(groupId);
+    // Filter alarms that are in the selected group
+    if (groupId === 0) {
+      setDisplayedAlarms(ALARMS);
+    } else {
+    setDisplayedAlarms(ALARMS.filter((alarm) => alarms.includes(alarm.id)));
+    }
+  };
 
   return (
     <View style={styles.screen}>
       <View style={styles.groupsContainer}>
-        {/* <FlatList
-          data={displayedGroups}
-          renderItem={renderGroupItem}
-          keyExtractor={(item) => item.id}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          style={styles.groupsList}
-        /> */}
-        <Group items={displayedGroups}/>
+        <Group items={ALARM_GROUPS} onGroupPress={handleGroupPress} />
         <View style={styles.groupsEdit}>
           <GroupButton onPress={() => console.log("Edit Groups")}>
             Edit
           </GroupButton>
           <GroupButton onPress={() => console.log("Add Group")}>+</GroupButton>
-          <GroupButton
-            style={{
-              buttonContainer: { paddingBottom: 45 },
-            }}
-            onPress={() => console.log("Toggle Settings")}
-          >
-            <Switch />
+          <GroupButton onPress={() => console.log("Toggle Settings")}>
+            Settings
           </GroupButton>
         </View>
       </View>
       <Alarm items={displayedAlarms} />
       <View style={styles.buttonContainer}>
-        <NavButton
-          style={{
-            buttonContainer: { borderColor: Colors.primary500, borderWidth: 3 },
-          }}
-          onPress={() => console.log("Add Alarm")}
-        >
-          +
-        </NavButton>
+        <NavButton onPress={() => console.log("Add Alarm")}>+</NavButton>
       </View>
     </View>
   );
 }
 
 export default AlarmsScreen;
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -88,7 +80,6 @@ const styles = StyleSheet.create({
   groupItem: {
     padding: 10,
     marginHorizontal: 5,
-    backgroundColor: Colors.primary200,
     borderRadius: 10,
     borderColor: "black",
     borderWidth: 2,
@@ -108,6 +99,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255, 255, 255, 0.2)",
     padding: 5,
-    margin: screenWidth * 0.03,
+    flexGrow: 0,
   },
 });

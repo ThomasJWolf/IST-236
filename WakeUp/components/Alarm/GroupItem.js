@@ -6,42 +6,22 @@ import Colors from "../../constants/colors";
 
 // Mock data - replace with your actual data source
 
-function GroupItem(props) {
-  const navigation = useNavigation();
-
-  // This function could be used to navigate to an group details screen or toggle group state
-  const handleGroupPress = (groupId) => {
-    console.log("Group pressed:", groupId);
-    // navigation.navigate("GroupDetails", { groupId: groupId });
+const GroupItem = (props) => {
+  // Use this function to handle press on a group item
+  const handlePress = () => {
+    props.onGroupPress(props.id, props.alarms);
   };
 
-  function selectedGroupHandler() {
-    navigation.navigate("GroupDetails", {
-      groupId: props.id,
-    });
-
-  }
-
   return (
-    <View
-      style={[
-        styles.itemContainer,
-        {
-          backgroundColor:
-            props.clockIndex % 2 == 0
-              ? "rgba(231, 231, 231, 0.1)"
-              : "rgba(255, 255, 255, 0.2)",
-        },
-      ]}
-    >
-      <Pressable android_ripple={{ color: "grey" }} onPress={handleGroupPress}>
+    <View style={[styles.itemContainer]}>
+      <Pressable android_ripple={{ color: "grey" }} onPress={handlePress}>
         <View style={styles.groupContainer}>
           <Text style={styles.name}>{props.name}</Text>
         </View>
       </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   screen: {
@@ -49,27 +29,25 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background, // Replace with your actual color
   },
   itemContainer: {
-    paddingHorizontal: 5,
-    paddingTop: 5,
-    marginBottom: 10,
-    borderRadius: 20,
-    backgroundColor: "#fff",
+    marginHorizontal: 1,
+    borderRadius: 5,
     borderColor: "#000",
-    borderWidth: 3,
+    borderWidth: 2,
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
   button: {
     flex: 1,
   },
   groupContainer: {
-    flex: 1,
-    alignItems: "center",
+    padding: 3,
+    paddingBottom: 8,
+    paddingHorizontal: 5,
   },
   name: {
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
   },
-
 });
 
 export default GroupItem;

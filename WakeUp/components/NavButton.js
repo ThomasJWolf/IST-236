@@ -9,10 +9,13 @@ import Colors from "../constants/colors.js";
 
 // Adds the NavButton function which every page uses
 function NavButton(props) {
-  const { width, hight } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   return (
-    <Pressable android_ripple={{ color: "grey" }} onPress={props.onPress}>
+    <Pressable
+      android_ripple={{ color: "grey", radius: 85}}
+      onPress={props.onPress}
+    >
       <View style={[styles.buttonContainer, props.style?.buttonContainer]}>
         <View style={[styles.textContainer, props.style?.textContainer]}>
           <Text
@@ -38,6 +41,7 @@ const styles = StyleSheet.create({
     maxWidth: "40%",
     marginHorizontal: 10,
     marginVertical: 10,
+    
   },
   textContainer: {},
   text: {

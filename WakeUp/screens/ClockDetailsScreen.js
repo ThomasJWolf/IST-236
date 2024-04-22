@@ -2,6 +2,7 @@ import { View, Text, StyleSheet} from "react-native";
 import { useState, useLayoutEffect, useContext } from "react";
 import { CLOCKS } from "../data/clocks";
 import Colors from "../constants/colors";
+import Clock from "react-live-clock";
 
 function ClockDetailsScreen(props) {
   const clockId = props.route.params.clockId;
@@ -21,14 +22,22 @@ function ClockDetailsScreen(props) {
   }, [props.navigation, headerButtonPressHandler]);
 
   return (
-
     <View style={styles.clockContainer}>
-      <Text style={styles.timezone}>{selectedClock.timezone}</Text>
-
-      <Text style={styles.time}>{selectedClock.time}</Text>
-
-      <Text style={styles.date}>{selectedClock.date}</Text>
-
+      <Text style={styles.name}>{props.name}</Text>
+      <Clock
+        format={"h:mm:ss a"}
+        ticking={true}
+        timezone={props.timezone}
+        element={Text}
+        style={styles.time}
+      />
+      <Clock
+        format={"LL"}
+        ticking={true}
+        timezone={props.timezone}
+        element={Text}
+        style={styles.date}
+      />
     </View>
   );
 }
@@ -45,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  timezone: {
+  name: {
     fontSize: 40,
     fontWeight: "bold",
     color: Colors.primary300,

@@ -9,12 +9,13 @@ function Group(props) {
       name: itemData.item.name,
       alarms: itemData.item.alarms,
       groupIndex: itemData.index,
+      onGroupPress: props.onGroupPress, // Pass the function to GroupItem
     };
     return <GroupItem {...groupItemProps} />;
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.groupContainer}>
       <FlatList
         data={props.items}
         keyExtractor={(item) => item.id}
@@ -40,18 +41,16 @@ const styles = StyleSheet.create({
     opacity: 0.1,
   },
   flatlist: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: Color.background,
+
   },
-  groupsContainer: {
-    flexDirection: "column",
-    justifyContent: "center",
+  groupContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
     padding: 5,
+    
+  },
+  groupsList: {
     flexGrow: 0,
   },
 });

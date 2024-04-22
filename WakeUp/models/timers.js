@@ -4,6 +4,7 @@ class Timers {
       title,
       description,
       time,
+      timeLeft,
       status
 
     ) {
@@ -11,6 +12,7 @@ class Timers {
       this.title = title;
       this.description = description;
       this.time = time;
+      this.timeLeft = timeLeft;
       this.status = status;
       
     }

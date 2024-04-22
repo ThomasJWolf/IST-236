@@ -1,20 +1,20 @@
 class Clocks {
     constructor(
       id,
+      name,
       timezone,
-      time,
-      date
+      active
 
     ) {
       this.id = id;
+      this.name = name;
       this.timezone = timezone;
-      this.time = time;
-      this.date = date;
+      this.active = active;
       
     }
   
     toString() {
-      return `${this.timezone} at ${this.time}, ${this.date}`;
+      return `${this.name} - ${this.timezone}`;
     }
   }
   

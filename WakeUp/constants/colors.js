@@ -8,6 +8,7 @@ const Colors = {
   primary500: "#2c0000",
   primary800: "#000000",
   background: "#111111",
+  backgroundO9: "rgba(22, 21, 21, 0.92)",
 };
 
 export default Colors;

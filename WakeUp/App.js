@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Settings, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import Colors from "./constants/colors.js";
@@ -23,6 +23,10 @@ import {
   MaterialCommunityIcons,
   Feather,
 } from "@expo/vector-icons";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store.js";
+import { initializeClocks } from "./redux/actions.js";
 
 // Create navigator objects
 const Stack = createNativeStackNavigator();
@@ -62,7 +66,7 @@ function DrawerNavigator() {
       })}
     >
       <Drawer.Screen
-        name="Clocks"
+        name="Clocks&Timers"
         component={TabsNavigator}
         options={{
           title: "Clocks & Timers",
@@ -113,7 +117,11 @@ function TabsNavigator() {
         tabBarActiveBackgroundColor: Colors.primary800,
         tabBarInactiveBackgroundColor: Colors.primary500,
         tabBarStyle: { backgroundColor: Colors.primary500 },
-        tabBarLabelStyle: { fontFamily: "antipastoPro", fontSize: 12, fontWeight: "bold" },
+        tabBarLabelStyle: {
+          fontFamily: "antipastoPro",
+          fontSize: 12,
+          fontWeight: "bold",
+        },
       }}
     >
       <Tab.Screen
@@ -171,6 +179,11 @@ function TabsNavigator() {
 // Main application component
 
 export default function App() {
+
+    useEffect(() => {
+      store.dispatch(initializeClocks());
+    }, []);
+
   //Set up our custom fonts
   const [fontsLoaded, fontError] = useFonts({
     antipastoPro: require("./assets/fonts/AntipastoPro_trial.ttf"),
@@ -189,46 +202,50 @@ export default function App() {
   } else {
     return (
       <>
-        <StatusBar style="light" />
-        <NavigationContainer style={styles.container}>
-          <Stack.Navigator
-            initialRouteName="DrawerNavigator"
-            screenOptions={{
-              headerTintColor: Colors.primary300,
-              headerStyle: { backgroundColor: Colors.primary500 },
-              contentStyle: { backgroundColor: Colors.background },
-            }}
-          >
-            <Stack.Screen
-              name="DrawerNavigator"
-              component={DrawerNavigator}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="ClockDetails"
-              component={ClockDetailsScreen}
-              options={{
-                title: "Clocks",
-              }}
-            />
-            <Stack.Screen
-              name="TimerDetails"
-              component={TimerDetailsScreen}
-              options={{
-                title: "Timers",
-              }}
-            />
-            <Stack.Screen
-              name="StopwatchDetails"
-              component={StopwatchDetailsScreen}
-              options={{
-                title: "Stopwatches",
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <StatusBar style="light" />
+            <NavigationContainer style={styles.container}>
+              <Stack.Navigator
+                initialRouteName="DrawerNavigator"
+                screenOptions={{
+                  headerTintColor: Colors.primary300,
+                  headerStyle: { backgroundColor: Colors.primary500 },
+                  contentStyle: { backgroundColor: Colors.background },
+                }}
+              >
+                <Stack.Screen
+                  name="DrawerNavigator"
+                  component={DrawerNavigator}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="ClockDetails"
+                  component={ClockDetailsScreen}
+                  options={{
+                    title: "Clocks",
+                  }}
+                />
+                <Stack.Screen
+                  name="TimerDetails"
+                  component={TimerDetailsScreen}
+                  options={{
+                    title: "Timers",
+                  }}
+                />
+                <Stack.Screen
+                  name="StopwatchDetails"
+                  component={StopwatchDetailsScreen}
+                  options={{
+                    title: "Stopwatches",
+                  }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </PersistGate>
+        </Provider>
       </>
     );
   }

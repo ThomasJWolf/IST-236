@@ -1,40 +1,56 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, FlatList, TextInput } from "react-native";
 import ClockItem from "./ClockItem";
 import Color from "../../constants/colors";
 
-function Clock(props) {
-  function renderClockItem(itemData) {
-    const clockItemProps = {
-      id: itemData.item.id,
-      timezone: itemData.item.timezone,
-      time: itemData.item.time,
-      date: itemData.item.date,
-      clockIndex: itemData.index,
-    };
-    return <ClockItem {...clockItemProps} />;
-  }
+const Clock = ({ items, containerStyle }) => {
+  const [clocks, setClocks] = useState(
+    items.map((clock) => ({
+      ...clock,
+      active: false, // Ensure all clocks are initially not active
+    }))
+  );
+
+  const handleToggle = (id) => () => {
+    const updatedClocks = clocks.map((clock) =>
+      clock.id === id ? { ...clock, active: !clock.active } : clock
+    );
+    setClocks(updatedClocks);
+  };
+
+  const renderClockItem = ({ item }) => {
+    return <ClockItem {...item} onToggle={handleToggle(item.id)} />;
+  };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <FlatList
-        data={props.items}
-        keyExtractor={(item) => item.id}
+        data={clocks}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderClockItem}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={() => <View style={{ height: 100 }} />}
       />
     </View>
   );
-}
-
-export default Clock;
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: Color.background
+    backgroundColor: Color.background,
+  },
+  searchInput: {
+    fontSize: 18,
+    padding: 10,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    marginBottom: 10,
   },
   backgroundImage: {
     opacity: 0.1,
   },
 });
+
+export default Clock;

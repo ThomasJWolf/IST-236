@@ -1,15 +1,16 @@
-import { View, Text, StyleSheet, Pressable, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import NavButton from "../NavButton";
+import React from 'react';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import Clock from 'react-live-clock';
+import { useNavigation } from '@react-navigation/native';
 
 function ClockItem(props) {
   const navigation = useNavigation();
 
-  function selectedClockHandler() {
+  const selectedClockHandler = () => {
     navigation.navigate("ClockDetails", {
       clockId: props.id,
     });
-  }
+  };
 
   return (
     <View
@@ -17,7 +18,7 @@ function ClockItem(props) {
         styles.itemContainer,
         {
           backgroundColor:
-            props.clockIndex % 2 == 0
+            props.id % 2 === 0
               ? "rgba(231, 231, 231, 0.1)"
               : "rgba(255, 255, 255, 0.2)",
         },
@@ -25,16 +26,26 @@ function ClockItem(props) {
     >
       <Pressable onPress={selectedClockHandler}>
         <View style={styles.clockContainer}>
-          <Text style={styles.timezone}>{props.timezone}</Text>
-          <Text style={styles.time}>{props.time}</Text>
-          <Text style={styles.date}>{props.date}</Text>
+          <Text style={styles.name}>{props.name}</Text>
+          <Clock
+            format={"h:mm:ss a"}
+            ticking={true}
+            timezone={props.timezone}
+            element={Text}
+            style={styles.time}
+          />
+          <Clock
+            format={"LL"}
+            ticking={true}
+            timezone={props.timezone}
+            element={Text}
+            style={styles.date}
+          />
         </View>
       </Pressable>
     </View>
   );
 }
-
-export default ClockItem;
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -46,14 +57,11 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     borderWidth: 3,
   },
-  button: {
-    flex: 1,
-  },
   clockContainer: {
     flex: 1,
     alignItems: "center",
   },
-  timezone: {
+  name: {
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
@@ -68,3 +76,5 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
 });
+
+export default ClockItem;
