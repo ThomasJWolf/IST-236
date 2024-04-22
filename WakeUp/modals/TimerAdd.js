@@ -10,12 +10,22 @@ import {
 } from "react-native";
 import Color from "../constants/colors";
 import NavButton from "../components/NavButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTimer } from "../redux/actions"; // Ensure this path is correct
 
 const { width, height } = Dimensions.get("window");
+const screenWidth = Dimensions.get("window").width; // Get the full width of the screen
+const buttonWidth = 100; // Width of the button, must match the style below
+const selectMaxTimerId = (state) => {
+  // Access the nested timers array inside the timers object
+  const timersArray = state.timers.timers || [];
+  console.log(timersArray); // Log to ensure correct data is accessed
+  const maxId = timersArray.reduce((max, timer) => Math.max(max, timer.id), 0);
+  return maxId;
+};
 
 const TimerAdd = ({ visible, onClose }) => {
+  const maxTimerId = useSelector(selectMaxTimerId);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [hours, setHours] = useState("0");
@@ -26,27 +36,37 @@ const TimerAdd = ({ visible, onClose }) => {
   const validateTime = (text, limit) =>
     text.replace(/[^0-9]/g, "0").slice(0, limit);
 
-  const handleSubmit = () => {
-    if (
-      !title.trim() &&
-      !description.trim() &&
-      (!hours || !minutes || !seconds)
-    ) {
-      alert("Please fill all fields correctly.");
-      return;
-    }
+const handleSubmit = () => {
+  const newId = maxTimerId + 1;
+  const fullTime =
+    parseInt(hours, 10) * 3600 +
+    parseInt(minutes, 10) * 60 +
+    parseInt(seconds, 10);
 
-    const fullTime =
-      parseInt(hours, 10) * 3600 +
-      parseInt(minutes, 10) * 60 +
-      parseInt(seconds, 10);
-    if (isNaN(fullTime)) {
-      alert("Invalid time input.");
-      return;
-    }
-    dispatch(addTimer({ title, description, time: parseInt(fullTime), timeLeft: parseInt(fullTime)}));
-    handleClose();
+  if (
+    !title.trim() ||
+    !description.trim() ||
+    isNaN(fullTime) ||
+    fullTime <= 0
+  ) {
+    alert("Please fill all fields correctly with valid time.");
+    return;
+  }
+
+  const newTimer = {
+    id: newId,
+    title,
+    description,
+    time: fullTime,
+    timeLeft: fullTime,
+    status: true, // Assume default status is true; adjust according to your app logic
   };
+
+  console.log("Dispatching new timer:", newTimer);
+  dispatch(addTimer(newTimer));
+  handleClose();
+};
+
 
   const handleClose = () => {
     setTitle("");
@@ -69,12 +89,14 @@ const TimerAdd = ({ visible, onClose }) => {
           <Text style={styles.modalText}>Add a Timer</Text>
           <TextInput
             placeholder="Title"
+            placeholderTextColor={"#cccccc"}
             style={styles.input}
             value={title}
             onChangeText={setTitle}
           />
           <TextInput
             placeholder="Description"
+            placeholderTextColor={"#cccccc"}
             style={styles.input}
             value={description}
             onChangeText={setDescription}
@@ -82,6 +104,7 @@ const TimerAdd = ({ visible, onClose }) => {
           <View style={styles.timeContainer}>
             <TextInput
               placeholder="Hours"
+              placeholderTextColor={"#cccccc"}
               style={styles.time}
               keyboardType="numeric"
               onChangeText={(text) => setHours(validateTime(text, 2))}
@@ -89,6 +112,7 @@ const TimerAdd = ({ visible, onClose }) => {
             />
             <TextInput
               placeholder="Minutes"
+              placeholderTextColor={"#cccccc"}
               style={styles.time}
               keyboardType="numeric"
               onChangeText={(text) => setMinutes(validateTime(text, 2))}
@@ -96,13 +120,13 @@ const TimerAdd = ({ visible, onClose }) => {
             />
             <TextInput
               placeholder="Seconds"
+              placeholderTextColor={"#cccccc"}
               style={styles.time}
               keyboardType="numeric"
               onChangeText={(text) => setSeconds(validateTime(text, 2))}
               value={seconds}
             />
           </View>
-          <Button title="Add Timer" onPress={handleSubmit} />
           <NavButton
             style={{
               buttonContainer: {
@@ -110,10 +134,23 @@ const TimerAdd = ({ visible, onClose }) => {
                 borderWidth: 3,
               },
             }}
-            onPress={handleClose}
+            onPress={handleSubmit}
           >
-            Close
+            Add Timer
           </NavButton>
+          <View style={styles.buttonContainer}>
+            <NavButton
+              style={{
+                buttonContainer: {
+                  bordercolor: Color.primary500,
+                  borderWidth: 3,
+                },
+              }}
+              onPress={handleClose}
+            >
+              Close
+            </NavButton>
+          </View>
         </View>
       </Modal>
     </View>
@@ -126,6 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
+    position: "relative", // Ensures the floating button can be absolutely positioned
   },
   modalView: {
     width: width, // 90% of screen width
@@ -144,9 +182,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     position: "absolute",
     bottom: 20,
-    width: width,
-    height: height,
-    borderRadius: 100,
+    width: screenWidth,
+    height: buttonWidth,
+    borderRadius: buttonWidth,
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "antipastoPro",
@@ -154,8 +192,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    fontSize: 23, // Optional: Adjust font size for better readability
+    fontSize: 50, // Optional: Adjust font size for better readability
     color: "white", // Optional: Adjust font color for better readability
+    padding: 30,
   },
   inputContainer: {
     width: "100%",
@@ -166,27 +205,29 @@ const styles = StyleSheet.create({
     width: "80%",
     padding: 10,
     marginVertical: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backgroundColor: "#444444",
     color: "white",
     borderRadius: 20,
   },
   timeContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    color: "white",
+    width: "80%",
   },
   time: {
     width: "30%",
-    padding: 10,
+    padding: 20,
     marginVertical: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backgroundColor: "#444444",
     color: "white",
     borderRadius: 20,
   },
   input: {
     width: "80%",
-    padding: 10,
+    padding: 20,
     marginVertical: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backgroundColor: "#444444",
     color: "white",
     borderRadius: 20,
   },

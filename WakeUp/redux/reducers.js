@@ -47,12 +47,20 @@ export const timerReducer = (state = initialTimerState, action) => {
     case INITIALIZE_TIMERS:
       return {
         ...state,
-        timers: action.payload
+        timers: action.payload,
       };
     case ADD_TIMER:
-      console.log("Add worked", JSON.stringify(state));
-
-      return { ...state, timers: [...state.timers, action.payload] };
+      console.log(
+        "Current State before add:",
+        JSON.stringify(state.timers, null, 2)
+      );
+      console.log("Adding Timer:", JSON.stringify(action.payload, null, 2));
+      const updatedTimers = [...state.timers, action.payload];
+      console.log("State after add:", JSON.stringify(updatedTimers, null, 2));
+      return {
+        ...state,
+        timers: updatedTimers,
+      };
     case DELETE_TIMER:
       return {
         ...state,
@@ -80,4 +88,3 @@ export const timerReducer = (state = initialTimerState, action) => {
       return state;
   }
 };
-

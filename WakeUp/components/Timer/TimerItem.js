@@ -32,13 +32,19 @@ function TimerItem(props) {
   const [hasFinished, setHasFinished] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const dispatch = useDispatch();
+  const visualTime = useRef(new Animated.Value(0)).current; // Secondary animated value for visual representation
+  const blinkAnimation = useRef(new Animated.Value(1)).current; // Opacity starts as fully visible
+  const shadowOpacity = useRef(new Animated.Value(1)).current; // Starts fully visible
 
-  const handleToggle = () => {
-    dispatch(toggleTimer(props.id));
-  };
-
-  const handleDelete = () => {
-    dispatch(deleteTimer(props.id));
+  const selectedTimerHandler = () => {
+    navigation.navigate("TimerDetails", {
+      id: props.id,
+      title: props.title,
+      time: props.time,
+      description: props.description,
+      timeLeft: duration - elapsedTime,
+      status: isPaused,
+    });
   };
 
   const pi = Math.PI; // Use Math.PI for π
@@ -55,22 +61,59 @@ function TimerItem(props) {
   };
 
   useEffect(() => {
-    Animated.timing(animatedValue, {
-      toValue: 1,
-      duration: duration * 1000,
-      easing: Easing.linear,
-      useNativeDriver: true,
-    }).start(() => {
-      setHasFinished(true);
-    });
+    let interval;
+    if (isPaused) {
+      interval = setInterval(() => {
+        Animated.sequence([
+          Animated.timing(blinkAnimation, {
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(blinkAnimation, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      }, 1000); // Adjust timing as needed for faster/slower blinking
+    } else {
+      clearInterval(interval);
+      blinkAnimation.setValue(1); // Reset to full opacity when not paused
+    }
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Update visualTime when elapsedTime changes
+  useEffect(() => {
+    let animation;
+
+    if (!isPaused) {
+      // Start or resume the animation
+      animation = Animated.timing(visualTime, {
+        toValue: elapsedTime,
+        duration: 900, // Adjust the duration if needed
+        easing: Easing.out(Easing.cubic), // Using an ease-out curve
+        useNativeDriver: true,
+      });
+      animation.start();
+    } else {
+      // Stop the animation and maintain the current position
+      visualTime.stopAnimation();
+    }
 
     return () => {
-      animatedValue.stopAnimation();
+      if (animation) {
+        animation.stop(); // Ensure to stop the animation when the component unmounts or dependencies update
+      }
     };
-  }, [isPaused, duration]);
-
+  }, [isPaused, elapsedTime]); // Reacting to changes in isPaused and elapsedTime
   const strokeDasharray = perimeter;
-  const strokeDashoffset = (1 - elapsedTime / duration) * perimeter;
+  const strokeDashoffset = visualTime.interpolate({
+    inputRange: [0, Math.max(duration, 1)], // Ensure inputRange does not fail with zero
+    outputRange: [perimeter, 0],
+  });
 
   return (
     <View
@@ -84,7 +127,7 @@ function TimerItem(props) {
         },
       ]}
     >
-      <Pressable onPress={handleToggle} onLongPress={handleDelete}>
+      <Pressable onPress={selectedTimerHandler}>
         <Svg height={size / 2} width={size} style={styles.barContainer}>
           <Defs>
             <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="0%">
@@ -98,10 +141,21 @@ function TimerItem(props) {
             height={size / 2 - strokeWidth}
             rx={15}
             fill="none"
+            stroke="#000" // Shadow color
+            strokeWidth={strokeWidth} // Slightly larger to create a shadow effect
+          />
+          <AnimatedRect
+            x={strokeWidth / 2}
+            y={strokeWidth / 2}
+            width={size - strokeWidth}
+            height={size / 2 - strokeWidth}
+            rx={15}
+            fill="none"
             stroke="url(#grad)"
             strokeWidth={strokeWidth}
             strokeDasharray={strokeDasharray}
             strokeDashoffset={strokeDashoffset}
+            opacity={blinkAnimation} // Apply the animated opacity value here
           />
         </Svg>
         <View style={styles.timerContainer}>
@@ -115,7 +169,7 @@ function TimerItem(props) {
               }}
               size={30}
               onChange={(remainingSec) => {
-                setElapsedTime(duration - remainingSec + 1 ); // Update remaining time
+                setElapsedTime(duration - remainingSec + 1); // Update remaining time
               }}
               digitStyle={{}}
               digitTxtStyle={{ color: "#FFF" }}

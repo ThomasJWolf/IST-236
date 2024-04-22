@@ -38,29 +38,14 @@ export const toggleTimer = (id) => ({
   payload: id,
 });
 
-export const addTimer = (newTimerData) => (dispatch, getState) => {
-  const state = getState();
-  const currentTimers = state.timers.timers;
-
-  // Find the maximum ID in the current timers array
-  const maxId = currentTimers.reduce(
-    (max, timer) => Math.max(max, timer.id),
-    0
-  );
-  const newId = maxId + 1; // Increment the maximum ID to get a new unique ID
-  console.log("New ID:", newId);
-
-  const newTimer = {
-    ...newTimerData,
-    id: newId, // Set the new unique ID
-    status: false, // Default status
+// Action Creators
+export function addTimer(timer) {
+  return {
+    type: 'ADD_TIMER',
+    payload: timer
   };
+}
 
-  dispatch({
-    type: ADD_TIMER,
-    payload: newTimer,
-  });
-};
 
 // Action to delete a timer
 export const deleteTimer = (id) => ({
