@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Dimensions, Text } from "react-native";
+import { View, StyleSheet, Dimensions, Text, Button } from "react-native";
 import Colors from "../constants/colors";
 import Group from "../components/Alarm/Group";
 import Alarm from "../components/Alarm/Alarm";
@@ -7,6 +7,10 @@ import GroupButton from "../components/GroupButton";
 import NavButton from "../components/NavButton";
 import {ALARMS} from "../data/alarms"; // Assuming these are your data imports
 import {ALARM_GROUPS} from "../data/groups"; // Assuming these are your data imports
+import { Switch } from "react-native-gesture-handler";
+import { Notifications } from "expo";
+import { setScheduledAlarms } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const screenWidth = Dimensions.get("window").width; // Get the full width of the screen
 const buttonWidth = 100; // Width of the button, must match the style below
@@ -14,6 +18,15 @@ const buttonWidth = 100; // Width of the button, must match the style below
 function AlarmsScreen() {
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [displayedAlarms, setDisplayedAlarms] = useState(ALARMS);
+
+
+    const fetchScheduledAlarms = async () => {
+      console.log("Fetching scheduled notifications...");
+      const notifications =
+        await Notifications.getAllScheduledNotificationsAsync();
+      console.log("Scheduled notifications:", notifications);
+      setScheduledAlarms(notifications);
+    };
 
   useEffect(() => {
     // On component mount, show all alarms
@@ -40,14 +53,24 @@ function AlarmsScreen() {
             Edit
           </GroupButton>
           <GroupButton onPress={() => console.log("Add Group")}>+</GroupButton>
-          <GroupButton onPress={() => console.log("Toggle Settings")}>
-            Settings
+          <GroupButton
+            style={styles.switch}
+            onPress={() => console.log("Toggle Settings")}
+          >
+            <Switch />
           </GroupButton>
         </View>
       </View>
       <Alarm items={displayedAlarms} />
       <View style={styles.buttonContainer}>
-        <NavButton onPress={() => console.log("Add Alarm")}>+</NavButton>
+        <NavButton
+          style={{
+            buttonContainer: { borderColor: "#000", borderWidth: 3 },
+          }}
+          onPress={() => console.log("Add Alarm")}
+        >
+          +
+        </NavButton>
       </View>
     </View>
   );
@@ -100,5 +123,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.2)",
     padding: 5,
     flexGrow: 0,
+  },
+  switch: {
+    paddingBottom: 100,
   },
 });

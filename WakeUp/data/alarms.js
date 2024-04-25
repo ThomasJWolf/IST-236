@@ -10,7 +10,7 @@ export const ALARMS = [
     false,
     true,
   ]),
-  new Alarms(2, "08:00 AM", "Alarm 2", false, [
+  new Alarms(2, "09:04 PM", "Now", false, [
     false,
     true,
     false,
@@ -28,50 +28,31 @@ export const ALARMS = [
     false,
     true,
   ]),
-  new Alarms(4, "10:00 AM", "Alarm 4", false, [
+  new Alarms(4, "09:08 PM", "Alarm 4", true, [
+    false,
+    false,
     false,
     true,
     false,
-    true,
     false,
-    true,
-    false,
-  ]),
-  new Alarms(5, "11:00 AM", "Alarm 5", true, [
-    true,
-    false,
-    true,
-    false,
-    true,
-    false,
-    true,
-  ]),
-  new Alarms(6, "12:00 PM", "Alarm 6", false, [
-    false,
-    true,
-    false,
-    true,
-    false,
-    true,
     false,
   ]),
-  new Alarms(7, "01:00 PM", "Alarm 7", true, [
-    true,
+  new Alarms(5, "09:49 PM", "Alarm 5", true, [
+    false,
+    false,
     false,
     true,
     false,
-    true,
     false,
-    true,
+    false,
   ]),
-
-  new Alarms(8, "02:00 PM", "Alarm 8", false, [
+  new Alarms(6, "11:21 PM", "Alarm 6", true, [
+    false,
+    false,
     false,
     true,
     false,
-    true,
     false,
-    true,
     false,
   ]),
 ];

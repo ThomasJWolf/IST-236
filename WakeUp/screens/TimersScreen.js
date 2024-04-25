@@ -22,7 +22,9 @@ function TimersScreen() {
     timers && Array.isArray(timers) ? timers.filter((timer) => timer) : [];
 
   useEffect(() => {
-    dispatch(initializeTimers());
+    if (displayedTimers.length === 0) {
+      dispatch(initializeTimers());
+    }
     const fetchData = async () => {
       // Example async function
       const response = true;

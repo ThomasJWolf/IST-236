@@ -35,6 +35,10 @@ const Tab = createBottomTabNavigator();
 
 // Drawer navigation setup
 function DrawerNavigator() {
+
+
+
+
   return (
     <Drawer.Navigator
       initialRouteName="Clocks"

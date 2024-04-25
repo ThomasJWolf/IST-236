@@ -7,7 +7,7 @@ function Group(props) {
     const groupItemProps = {
       id: itemData.item.id,
       name: itemData.item.name,
-      alarms: itemData.item.alarms,
+      alarmList: itemData.item.alarmList,
       groupIndex: itemData.index,
       onGroupPress: props.onGroupPress, // Pass the function to GroupItem
     };

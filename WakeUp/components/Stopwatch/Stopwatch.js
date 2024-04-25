@@ -21,6 +21,7 @@ function Stopwatch(props) {
         keyExtractor={(item) => item.id}
         renderItem={renderStopwatchItem}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={() => <View style={{ height: 100 }} />}
       />
     </View>
   );

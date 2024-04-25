@@ -8,7 +8,11 @@ import {
   Dimensions,
   Easing,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  useNavigation,
+  useRoute,
+  useFocusEffect,
+} from "@react-navigation/native";
 import ActionButton from "../components/ActionButton";
 import Colors from "../constants/colors";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -19,6 +23,8 @@ import { toggleTimer, deleteTimer } from "../redux/actions";
 
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
 const screenWidth = Dimensions.get("window").width; // Get the full width of the screen
+const screenHeight = Dimensions.get("window").height; // Full screen height
+
 
 function TimerDetailsItem(props) {
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -27,10 +33,14 @@ function TimerDetailsItem(props) {
   const navigation = useNavigation();
   const route = useRoute();
   const { id, title, time, description, timeLeft, status } = route.params;
+  const timeFormat = time < 3600 ? ["M", "S"] : ["H", "M", "S"];
+  console.log("Time format", timeFormat);
 
-  const size = screenWidth - 48; // Account for padding and ensure it fits within the screen
+  const size = screenWidth - 10; // Account for padding and ensure it fits within the screen
+  const height = screenHeight - 66; // Optional: Use full height for a full-screen effect
+
   const duration = time; // Duration received from navigation parameter
-  const strokeWidth = 5;
+  const strokeWidth = 8;
   const [isPaused, setIsPaused] = useState(status); // Initial pause status from navigation
   const [elapsedTime, setElapsedTime] = useState(time - timeLeft);
   const dispatch = useDispatch();
@@ -39,7 +49,6 @@ function TimerDetailsItem(props) {
   const blinkAnimation = useRef(new Animated.Value(1)).current;
 
   const pi = Math.PI;
-  const height = size / 2;
   const radius = 15;
   const perimeter =
     2 * pi * radius + 2 * (size - 2 * radius) + 2 * (height - 2 * radius);
@@ -104,19 +113,16 @@ function TimerDetailsItem(props) {
       }
     };
   }, [isPaused, elapsedTime]); // Reacting to changes in isPaused and elapsedTime
+
+
   return (
     <View
       style={[
         styles.itemContainer,
-        {
-          backgroundColor:
-            id % 2 == 0
-              ? "rgba(231, 231, 231, 0.1)"
-              : "rgba(255, 255, 255, 0.2)",
-        },
+        { width: screenWidth, height: screenHeight },
       ]}
     >
-      <Svg height={size / 2} width={size} style={styles.barContainer}>
+      <Svg height={height} width={size} style={styles.barContainer}>
         <Defs>
           <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="0%">
             <Stop offset="100%" stopColor="#ff0000" />
@@ -126,7 +132,7 @@ function TimerDetailsItem(props) {
           x={strokeWidth / 2}
           y={strokeWidth / 2}
           width={size - strokeWidth}
-          height={size / 2 - strokeWidth}
+          height={height - strokeWidth}
           rx={15}
           fill="none"
           stroke="#000" // Shadow color
@@ -136,7 +142,7 @@ function TimerDetailsItem(props) {
           x={strokeWidth / 2}
           y={strokeWidth / 2}
           width={size - strokeWidth}
-          height={size / 2 - strokeWidth}
+          height={height - strokeWidth}
           rx={15}
           fill="none"
           stroke="url(#grad)"
@@ -149,31 +155,31 @@ function TimerDetailsItem(props) {
 
       <View style={styles.timerContainer}>
         <View style={styles.text}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.description}>{description}</Text>
-            <Countdown
-              until={duration}
-              running={!isPaused}
-              onFinish={() => {
-                setIsPaused(true);
-              }}
-              size={30}
-              onChange={(remainingSec) => {
-                setElapsedTime(duration - remainingSec + 1); // Update remaining time
-              }}
-              digitStyle={{}}
-              digitTxtStyle={{ color: "#FFF" }}
-              timeToShow={["M", "S"]}
-              separatorStyle={{ color: "#FFF" }}
-              showSeparator
-              timeLabels={{ m: null, s: null }}
-              style={styles.countdown}
-            />
-          </View>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>{description}</Text>
+          <Countdown
+            until={duration}
+            running={!isPaused}
+            onFinish={() => {
+              setIsPaused(true);
+            }}
+            size={30}
+            onChange={(remainingSec) => {
+              setElapsedTime(duration - remainingSec + 1); // Update remaining time
+            }}
+            digitStyle={{}}
+            digitTxtStyle={{ color: "#FFF", fontSize: 60 }}
+            timeToShow={timeFormat}
+            separatorStyle={{ color: "#FFF", fontSize: 60 }}
+            showSeparator
+            timeLabels={{ m: null, s: null }}
+            style={styles.countdown}
+          />
+        </View>
         <View style={styles.buttonContainter}>
           <ActionButton
             circle={true}
-            size={60}
+            size={130}
             onPress={() => {
               if (hasFinished) {
                 resetTimer();
@@ -185,7 +191,7 @@ function TimerDetailsItem(props) {
           >
             <MaterialIcons
               name={isPaused ? "play-arrow" : "pause"}
-              size={30}
+              size={90}
               color="white"
             />
           </ActionButton>
@@ -199,22 +205,19 @@ export default TimerDetailsItem;
 
 const styles = StyleSheet.create({
   itemContainer: {
+    flex: 1,
     paddingHorizontal: 5,
     paddingTop: 5,
-    marginBottom: 10,
-    borderRadius: 20,
-    backgroundColor: "#fff",
-    borderColor: "#000",
-    borderWidth: 3,
+    backgroundColor: "rgba(0,0,0,0.9)",
+
   },
 
   timerContainer: {
     flex: 1,
-    flexDirection: "row",
     margin: 20,
     position: "absolute", // Absolutely position the content container over the SVG
-    top: "30%",
-    left: "10%",
+    height: screenHeight,
+    width: screenWidth + 70,
     transform: [{ translateX: -50 }, { translateY: -50 }],
     alignItems: "center",
     justifyContent: "center",
@@ -223,24 +226,29 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   countdown: {
+    paddingTop: 150,
     color: "white",
     alignContent: "center",
     justifyContent: "center",
+
   },
   text: {
     padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
-    fontSize: 30,
+    paddingTop: 50,
+    fontSize: 80,
     color: "white",
   },
   time: {
-    fontSize: 60,
+    fontSize: 70,
     color: "white",
   },
   description: {
-    fontSize: 20,
-    color: "black",
+    fontSize: 30,
+    color: "white",
   },
   buttonContainter: {
     flex: 1,

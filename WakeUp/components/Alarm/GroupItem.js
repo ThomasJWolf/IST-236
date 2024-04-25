@@ -4,12 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colors from "../../constants/colors";
 
-// Mock data - replace with your actual data source
-
 const GroupItem = (props) => {
   // Use this function to handle press on a group item
   const handlePress = () => {
-    props.onGroupPress(props.id, props.alarms);
+    props.onGroupPress(props.id, props.alarmList);
   };
 
   return (

@@ -1,12 +1,12 @@
 class AlarmGroups {
-  constructor(id, name, alarms) {
+  constructor(id, name, alarmList) {
     this.id = id;
     this.name = name;
-    this.alarms = alarms;
+    this.alarmList = alarmList;
   }
 
   toString() {
-    return `${this.name} with ${this.alarms} alarms.`;
+    return `${this.name} with ${this.alarmList} alarmList.`;
   }
 }
 

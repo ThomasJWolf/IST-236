@@ -35,6 +35,7 @@ function TimerItem(props) {
   const visualTime = useRef(new Animated.Value(0)).current; // Secondary animated value for visual representation
   const blinkAnimation = useRef(new Animated.Value(1)).current; // Opacity starts as fully visible
   const shadowOpacity = useRef(new Animated.Value(1)).current; // Starts fully visible
+  const timeFormat = duration < 3600 ? ["M", "S"] : ["H", "M", "S"];
 
   const selectedTimerHandler = () => {
     navigation.navigate("TimerDetails", {
@@ -166,14 +167,19 @@ function TimerItem(props) {
               running={!isPaused}
               onFinish={() => {
                 setIsPaused(true);
+                setHasFinished(true);
+                alert("Time's up!");
               }}
               size={30}
               onChange={(remainingSec) => {
                 setElapsedTime(duration - remainingSec + 1); // Update remaining time
               }}
-              digitStyle={{}}
+              digitStyle={{ 
+                borderWidth: 2,
+                borderRadius: 10,
+              }}
               digitTxtStyle={{ color: "#FFF" }}
-              timeToShow={["M", "S"]}
+              timeToShow={timeFormat}
               separatorStyle={{ color: "#FFF" }}
               showSeparator
               timeLabels={{ m: null, s: null }}
@@ -240,14 +246,18 @@ const styles = StyleSheet.create({
   },
   text: {
     padding: 10,
+    width: "80%",
+    
   },
   title: {
     fontSize: 30,
     color: "white",
+    textAlign: "center",
   },
   time: {
     fontSize: 60,
     color: "white",
+    textAlign: "center",
   },
   description: {
     fontSize: 20,
