@@ -4,7 +4,7 @@ export const ALARM_GROUPS = [
   new AlarmGroups(0, "  0  ", []),
   new AlarmGroups(1, "Group 1", [1]),
   new AlarmGroups(2, "Group 2", [1, 2]),
-  new AlarmGroups(3, "Group 3", [1, 2, 3]),
+  new AlarmGroups(3, "Group 3", []),
   new AlarmGroups(4, "Group 4", [1, 2, 3, 4]),
   new AlarmGroups(5, "Group 5", [1, 2, 3, 4, 5]),
   new AlarmGroups(6, "Group 6", [1, 2, 3, 4, 5, 6]),

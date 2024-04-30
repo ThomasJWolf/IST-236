@@ -16,7 +16,7 @@ import {
   TOGGLE_ALARMS,
   ADD_ALARM,
   DELETE_ALARM,
-  UPDATE_ALARM,
+  UPDATE_ALARMS,
   ADD_ALARM_STEP,
   INITIALIZE_GROUPS,
   TOGGLE_GROUPS,
@@ -24,6 +24,8 @@ import {
   DELETE_GROUP,
   UPDATE_GROUP,
   ADD_GROUP_STEP,
+  ADD_GROUPS_ALARM,
+  REMOVE_GROUPS_ALARM,
 } from "./actions";
 
 const initialClockState = {
@@ -159,7 +161,7 @@ export const stopwatchReducer = (state = initialStopwatchState, action) => {
     default:
       return state;
   }
-}
+};
 
 export const alarmReducer = (state = initialAlarmState, action) => {
   switch (action.type) {
@@ -169,23 +171,28 @@ export const alarmReducer = (state = initialAlarmState, action) => {
         alarms: action.payload,
       };
     case ADD_ALARM:
+      console.log(
+        "Current State before add:",
+        JSON.stringify(state.alarms, null, 2)
+      );
+      console.log("Adding Alarm:", JSON.stringify(action.payload, null, 2));
+      const updatedAlarms = [...state.alarms, action.payload];
+      console.log("State after add:", JSON.stringify(updatedAlarms, null, 2));
       return {
         ...state,
-        alarms: [...state.alarms, action.payload],
+        alarms: updatedAlarms,
       };
     case DELETE_ALARM:
       return {
         ...state,
-        alarms: state.alarms.filter(
-          (alarm) => alarm.id !== action.payload
-        ),
+        alarms: state.alarms.filter((alarm) => alarm.id !== action.payload),
       };
-    case UPDATE_ALARM:
+    case UPDATE_ALARMS:
       return {
         ...state,
         alarms: state.alarms.map((alarm) =>
           alarm.id === action.payload.id
-            ? { ...alarm, ...action.payload }
+            ? { ...alarm, ...action.payload.updates }
             : alarm
         ),
       };
@@ -201,11 +208,12 @@ export const alarmReducer = (state = initialAlarmState, action) => {
     default:
       return state;
   }
-}
+};
 
 export const groupReducer = (state = initialGroupState, action) => {
   switch (action.type) {
     case INITIALIZE_GROUPS:
+      console.log("Initializing groups:", action.payload);
       return {
         ...state,
         groups: action.payload,
@@ -218,9 +226,7 @@ export const groupReducer = (state = initialGroupState, action) => {
     case DELETE_GROUP:
       return {
         ...state,
-        groups: state.groups.filter(
-          (group) => group.id !== action.payload
-        ),
+        groups: state.groups.filter((group) => group.id !== action.payload),
       };
     case UPDATE_GROUP:
       return {
@@ -240,7 +246,34 @@ export const groupReducer = (state = initialGroupState, action) => {
             : group
         ),
       };
+    case "ADD_GROUPS_ALARM":
+      return {
+        ...state,
+        groups: state.groups.map((group) =>
+          group.id === action.payload.id
+            ? {
+                ...group,
+                alarmList: [...group.alarmList, action.payload.alarmId],
+              }
+            : group
+        ),
+      };
+
+    case "REMOVE_GROUPS_ALARM":
+      return {
+        ...state,
+        groups: state.groups.map((group) =>
+          group.id === action.payload.id
+            ? {
+                ...group,
+                alarmList: group.alarmList.filter(
+                  (id) => id !== action.payload.alarmId
+                ),
+              }
+            : group
+        ),
+      };
     default:
       return state;
   }
-}
+};

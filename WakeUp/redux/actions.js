@@ -2,7 +2,7 @@ import { CLOCKS } from "../data/clocks"; // Adjust the path as necessary
 import { TIMERS } from "../data/timers"; // Adjust the path as necessary
 import { STOPWATCHES } from "../data/stopwatches"; // Adjust the path as necessary
 import { ALARMS } from "../data/alarms"; // Adjust the path as necessary
-import { GROUPS } from "../data/groups"; // Adjust the path as necessary
+import { ALARM_GROUPS } from "../data/groups"; // Adjust the path as necessary
 
 export const INITIALIZE_CLOCKS = "INITIALIZE_CLOCKS";
 export const TOGGLE_CLOCK = "TOGGLE_CLOCK";
@@ -139,10 +139,10 @@ export const deleteAlarm = (id) => ({
   payload: id,
 });
 
-// Action to update an alarm
-export const updateAlarm = (alarm) => ({
+// Update details of an alarm
+export const updateAlarm = (id, updates) => ({
   type: UPDATE_ALARMS,
-  payload: alarm,
+  payload: { id, updates },
 });
 
 // Action to add a step to an alarm
@@ -157,10 +157,12 @@ export const ADD_GROUPS = "ADD_GROUPS";
 export const DELETE_GROUPS = "DELETE_GROUPS";
 export const UPDATE_GROUPS = "UPDATE_GROUPS";
 export const ADD_GROUPS_STEP = "ADD_GROUPS_STEP";
+export const ADD_GROUPS_ALARM = "ADD_GROUPS_ALARM";
+export const REMOVE_GROUPS_ALARM = "REMOVE_GROUPS_ALARM";
 
 export const initializeGroups = () => ({
   type: INITIALIZE_GROUPS,
-  payload: GROUPS,
+  payload: ALARM_GROUPS,
 });
 
 // Action Creators
@@ -184,9 +186,9 @@ export const deleteGroup = (id) => ({
 });
 
 // Action to update a group
-export const updateGroup = (group) => ({
+export const updateGroup = (id, updates) => ({
   type: UPDATE_GROUPS,
-  payload: group,
+  payload: { id, updates },
 });
 
 // Action to add a step to a group
@@ -194,4 +196,15 @@ export const updateGroup = (group) => ({
 export const addGroupStep = (group) => ({
   type: ADD_GROUPS_STEP,
   payload: group,
+});
+
+// Action to add an alarm to a group
+export const addGroupAlarm = (id, alarmId) => ({
+  type: ADD_GROUPS_ALARM,
+  payload: { id, alarmId },
+});
+
+export const removeGroupAlarm = (id, alarmId) => ({
+  type: "REMOVE_GROUPS_ALARM",
+  payload: { id, alarmId },
 });

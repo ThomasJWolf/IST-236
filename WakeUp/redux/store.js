@@ -9,7 +9,6 @@ import {
   alarmReducer,
   groupReducer,
 } from "./reducers";
-import { addGroupStep } from "./actions";
 
 // Combine reducers
 const rootReducer = combineReducers({

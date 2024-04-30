@@ -1,23 +1,40 @@
 import { View, StyleSheet, FlatList } from "react-native";
 import GroupItem from "./GroupItem";
+import React, { useState } from "react";
 import Color from "../../constants/colors";
 
-function Group(props) {
-  function renderGroupItem(itemData) {
-    const groupItemProps = {
-      id: itemData.item.id,
-      name: itemData.item.name,
-      alarmList: itemData.item.alarmList,
-      groupIndex: itemData.index,
-      onGroupPress: props.onGroupPress, // Pass the function to GroupItem
-    };
-    return <GroupItem {...groupItemProps} />;
-  }
+function Group({ items, isSelected, forceUpdate, onGroupPress }) {
+  // Now items and isSelected are correctly recognized as props
+
+  const [groups, setGroups] = useState(
+    items.map((group) => ({
+      ...group,
+    }))
+  );
+
+  const handleToggle = (id) => () => {
+    const updatedGroups = groups.map((group) =>
+      group.id === id ? { ...group, active: !group.active } : group
+    );
+    setGroups(updatedGroups);
+  };
+
+  const renderGroupItem = ({ item }) => {
+    return (
+      <GroupItem
+        {...item}
+        isSelected={isSelected}
+        forceUpdate={forceUpdate}
+        onGroupPress={onGroupPress}
+        onToggle={handleToggle(item.id)}
+      />
+    );
+  };
 
   return (
     <View style={styles.groupContainer}>
       <FlatList
-        data={props.items}
+        data={items}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         renderItem={renderGroupItem}

@@ -52,6 +52,7 @@ function TimersScreen() {
           visible={modalIsVisible}
           onClose={() => {
             setModalIsVisible(false);
+            forceUpdate();
           }}
         />
       </View>

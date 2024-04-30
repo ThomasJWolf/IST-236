@@ -26,7 +26,7 @@ import {
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store.js";
-import { initializeClocks } from "./redux/actions.js";
+import { initializeClocks, initializeAlarms, initializeGroups, initializeStopwatches, initializeTimers } from "./redux/actions.js";
 
 // Create navigator objects
 const Stack = createNativeStackNavigator();
@@ -186,6 +186,10 @@ export default function App() {
 
     useEffect(() => {
       store.dispatch(initializeClocks());
+      store.dispatch(initializeAlarms());
+      store.dispatch(initializeGroups());
+      store.dispatch(initializeStopwatches());
+      store.dispatch(initializeTimers());
     }, []);
 
   //Set up our custom fonts

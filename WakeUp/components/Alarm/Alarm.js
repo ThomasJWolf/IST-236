@@ -4,7 +4,7 @@ import AlarmItem from "./AlarmItem";
 import { useSelector } from "react-redux";
 import Color from "../../constants/colors";
 
-const Alarm = ({ items, containerStyle }) => {
+const Alarm = ({ items, containerStyle, isEditing, groupAlarms,forceUpdate }) => {
   // Access the alarms from Redux store
   const [alarms, setAlarms] = useState(
     items.map((alarm) => ({
@@ -19,9 +19,18 @@ const Alarm = ({ items, containerStyle }) => {
     setAlarms(updatedAlarms);
   };
 
-  const renderAlarmItem = ({ item }) => {
-    return <AlarmItem {...item} onToggle={handleToggle(item.id)} />;
-  };
+const renderAlarmItem = ({ item }) => {
+  return (
+    <AlarmItem
+      {...item}
+      isEditing={isEditing}
+      groupAlarms={groupAlarms}
+      forceUpdate={forceUpdate}
+      onToggle={handleToggle(item.id)}
+    />
+  );
+};
+
 
   return (
     <View style={styles.container}>
